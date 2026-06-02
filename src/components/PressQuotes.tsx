@@ -35,7 +35,7 @@ export default function PressQuotes() {
             <motion.blockquote
               key={i}
               variants={anim.fadeUp}
-              className="flex h-full flex-col border border-brand-cream/8 bg-brand-charcoal/20 p-8"
+              className="flex h-full flex-col border border-brand-cream/8 bg-brand-charcoal/20 p-6 md:p-8"
             >
               <p className="mb-6 flex-1 text-base leading-relaxed text-brand-cream/85">
                 &ldquo;{item.text}&rdquo;

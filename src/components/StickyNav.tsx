@@ -47,7 +47,7 @@ export default function StickyNav() {
             className="flex shrink-0 items-center rounded-sm outline-none ring-brand-burgundy/40 focus-visible:ring-2"
             aria-label={`${siteConfig.brand.name} — home`}
           >
-            <CoBrandLockup size="sm" />
+            <CoBrandLockup size="sm" className="max-w-[min(100%,13.5rem)] sm:max-w-none" />
           </button>
 
           <nav className="hidden items-center lg:flex" aria-label="Page sections">
@@ -74,7 +74,7 @@ export default function StickyNav() {
             </a>
             <button
               type="button"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-brand-cream transition-colors hover:border-brand-burgundy/40 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-burgundy/50 lg:hidden"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-brand-cream transition-colors hover:border-brand-burgundy/40 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-burgundy/50 lg:hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -122,7 +122,7 @@ export default function StickyNav() {
                     <button
                       type="button"
                       onClick={() => scrollTo(id)}
-                      className="w-full rounded-md px-3 py-3 text-left text-xs font-medium uppercase tracking-[0.2em] text-brand-cream/85 transition-colors hover:bg-white/[0.05] hover:text-brand-gold"
+                      className="flex min-h-[44px] w-full items-center rounded-md px-3 py-3 text-left text-xs font-medium uppercase tracking-[0.2em] text-brand-cream/85 transition-colors hover:bg-white/[0.05] hover:text-brand-gold"
                     >
                       {label}
                     </button>

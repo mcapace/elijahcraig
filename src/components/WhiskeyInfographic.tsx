@@ -69,10 +69,10 @@ function BatchCircle({
         delay: reduced ? 0 : 0.2 + index * 0.18,
       }}
       whileHover={reduced ? undefined : { scale: 1.05 }}
-      className="relative z-10 mx-auto flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-brand-gold/40 bg-brand-black ring-[6px] ring-brand-black md:h-20 md:w-20 md:ring-8"
+      className="relative z-10 mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-brand-gold/40 bg-brand-black ring-[5px] ring-brand-black sm:h-[4.5rem] sm:w-[4.5rem] sm:ring-[6px] md:h-20 md:w-20 md:ring-8"
     >
       <div className="absolute inset-0 rounded-full bg-brand-burgundy/25" />
-      <span className="relative font-[family-name:var(--font-display)] text-4xl font-medium text-brand-gold md:text-5xl">
+      <span className="relative font-[family-name:var(--font-display)] text-3xl font-medium text-brand-gold sm:text-4xl md:text-5xl">
         {symbol}
       </span>
     </motion.div>
@@ -94,7 +94,7 @@ export default function WhiskeyInfographic() {
     <Section
       id="at-a-glance"
       fullBleed
-      className="relative overflow-hidden border-y border-brand-burgundy/15 bg-brand-charcoal/40 py-20 md:py-28"
+      className="relative overflow-hidden border-y border-brand-burgundy/15 bg-brand-charcoal/40 py-16 md:py-28"
     >
       <div
         className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-brand-burgundy/8 blur-[100px]"
@@ -110,7 +110,7 @@ export default function WhiskeyInfographic() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        className="relative mx-auto max-w-[1200px] px-6 md:px-12"
+        className="relative mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12"
       >
         <motion.div variants={anim.fadeUp} className="mb-12 text-center md:mb-16">
           <p className={`mb-3 ${typeEyebrow}`}>{infographic.subheading}</p>
@@ -141,7 +141,7 @@ export default function WhiskeyInfographic() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={viewport}
                 transition={{ delay: reduced ? 0 : 0.15 + i * 0.1, type: "spring", stiffness: 200, damping: 16 }}
-                className="font-[family-name:var(--font-display)] text-3xl font-medium text-brand-gold md:text-4xl"
+                className="font-[family-name:var(--font-display)] text-2xl font-medium text-brand-gold sm:text-3xl md:text-4xl"
               >
                 {stat.value}
               </motion.p>
@@ -157,7 +157,7 @@ export default function WhiskeyInfographic() {
             </p>
           </div>
 
-          <div className="relative overflow-hidden rounded-sm border border-brand-burgundy/20 bg-brand-black/40 px-5 py-10 md:px-10 md:py-12">
+          <div className="relative overflow-hidden rounded-sm border border-brand-burgundy/20 bg-brand-black/40 px-4 py-8 sm:px-5 sm:py-10 md:px-10 md:py-12">
             <motion.p
               className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-[family-name:var(--font-display)] text-[clamp(6rem,18vw,11rem)] font-medium leading-none text-brand-gold/[0.04]"
               aria-hidden
@@ -168,11 +168,11 @@ export default function WhiskeyInfographic() {
             </motion.p>
 
             <div className="relative mx-auto max-w-2xl md:max-w-3xl">
-              <div className="grid grid-cols-3 gap-x-3 md:gap-x-6">
+              <div className="grid grid-cols-3 gap-x-1.5 sm:gap-x-3 md:gap-x-6">
                 {batchParts.map((part) => (
                   <p
                     key={`${part.key}-label`}
-                    className="text-center font-[family-name:var(--font-body)] text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-brand-cream/55"
+                    className="text-center font-[family-name:var(--font-body)] text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-brand-cream/55 sm:text-[0.68rem] sm:tracking-[0.24em]"
                   >
                     {part.title}
                   </p>
@@ -195,7 +195,7 @@ export default function WhiskeyInfographic() {
                 ))}
               </div>
 
-              <div className="grid grid-cols-3 gap-x-3 md:gap-x-6">
+              <div className="grid grid-cols-3 gap-x-1.5 sm:gap-x-3 md:gap-x-6">
                 {batchParts.map((part, i) => (
                   <motion.p
                     key={`${part.key}-meaning`}
@@ -203,7 +203,7 @@ export default function WhiskeyInfographic() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={viewport}
                     transition={{ delay: reduced ? 0 : 0.45 + i * 0.15, duration: 0.5 }}
-                    className="mx-auto max-w-[9rem] text-center text-sm leading-snug text-brand-cream/78 md:max-w-[10rem] md:text-base"
+                    className="mx-auto max-w-none text-center text-xs leading-snug text-brand-cream/78 sm:max-w-[9rem] sm:text-sm md:max-w-[10rem] md:text-base"
                   >
                     {part.meaning}
                   </motion.p>
@@ -216,7 +216,7 @@ export default function WhiskeyInfographic() {
               whileInView={{ opacity: 1 }}
               viewport={viewport}
               transition={{ delay: reduced ? 0 : 0.8, duration: 0.5 }}
-              className="relative mt-8 text-center font-[family-name:var(--font-body)] text-xs tracking-wide text-brand-cream/45 md:mt-10"
+              className="relative mt-6 text-center font-[family-name:var(--font-body)] text-[0.65rem] leading-relaxed tracking-wide text-brand-cream/45 sm:text-xs md:mt-10"
             >
               New batches every {infographic.releases.join(" · ")}
             </motion.p>
@@ -270,7 +270,7 @@ export default function WhiskeyInfographic() {
 
         <motion.div
           variants={anim.fadeUp}
-          className="mb-14 rounded-sm border border-brand-cream/10 bg-brand-black/50 p-6 md:mb-16 md:p-10"
+          className="mb-14 rounded-sm border border-brand-cream/10 bg-brand-black/50 p-5 sm:p-6 md:mb-16 md:p-10"
         >
           <div className="mb-8">
             <p className={`mb-2 ${typeInfographicTitle}`}>The Mash Bill</p>
@@ -331,12 +331,15 @@ export default function WhiskeyInfographic() {
                 className="overflow-hidden rounded-sm border border-brand-cream/10 bg-brand-black/55 transition-colors hover:border-brand-burgundy/25"
               >
                 <motion.div
-                  className={`h-1 bg-gradient-to-r ${note.accent}`}
+                  className="h-1 w-full"
                   initial={{ scaleX: reduced ? 1 : 0 }}
                   whileInView={{ scaleX: 1 }}
-                  viewport={viewport}
+                  viewport={{ once: true, amount: 0.01 }}
                   transition={{ delay: reduced ? 0 : 0.1 + i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ transformOrigin: "left center" }}
+                  style={{
+                    transformOrigin: "left center",
+                    background: `linear-gradient(to right, ${note.accentFrom}, ${note.accentTo})`,
+                  }}
                 />
                 <div className="p-6 md:p-7">
                   <p className={`mb-3 ${typeEyebrowLight}`}>{note.label}</p>

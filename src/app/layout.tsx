@@ -1,7 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/lib/content";
 import { getMetadataBaseUrl } from "@/lib/metadata-base";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0A0806",
+};
 
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
@@ -29,7 +36,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <meta name="theme-color" content="#0A0806" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

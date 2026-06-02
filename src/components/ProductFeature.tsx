@@ -18,7 +18,7 @@ export default function ProductFeature() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="mx-auto grid max-w-[1100px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-12"
+        className="mx-auto grid max-w-[1100px] items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16 md:px-12"
       >
         <motion.div variants={anim.slideInLeft} className="relative mx-auto w-full max-w-sm">
           <motion.div
@@ -60,15 +60,15 @@ export default function ProductFeature() {
             </cite>
           </blockquote>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <a href={product.ctaUrl} target="_blank" rel="noopener noreferrer" className={typeButtonPrimary}>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <a href={product.ctaUrl} target="_blank" rel="noopener noreferrer" className={`${typeButtonPrimary} w-full sm:w-auto`}>
               {product.ctaText}
             </a>
             <a
               href={product.secondaryCtaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={typeButtonSecondary}
+              className={`${typeButtonSecondary} w-full sm:w-auto`}
             >
               {product.secondaryCtaText}
             </a>

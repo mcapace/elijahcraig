@@ -109,15 +109,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.85 }}
-          className="flex flex-col justify-center gap-3 sm:flex-row"
+          className="flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row"
         >
-          <a href={siteConfig.cta.buttonUrl} target="_blank" rel="noopener noreferrer" className={typeButtonPrimary}>
+          <a href={siteConfig.cta.buttonUrl} target="_blank" rel="noopener noreferrer" className={`${typeButtonPrimary} w-full sm:w-auto`}>
             Buy Now
           </a>
           <button
             type="button"
             onClick={() => document.getElementById("at-a-glance")?.scrollIntoView({ block: "start" })}
-            className={typeButtonSecondary}
+            className={`${typeButtonSecondary} w-full sm:w-auto`}
           >
             See the Rye
           </button>

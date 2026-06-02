@@ -11,7 +11,7 @@ type CoBrandLockupProps = {
 };
 
 const sizes = {
-  sm: { logoHeight: 22, waLogoHeight: 25, gap: 10, cross: 9 },
+  sm: { logoHeight: 20, waLogoHeight: 23, gap: 8, cross: 8 },
   md: { logoHeight: 26, waLogoHeight: 30, gap: 12, cross: 10 },
   lg: { logoHeight: 34, waLogoHeight: 39, gap: 14, cross: 12 },
 };

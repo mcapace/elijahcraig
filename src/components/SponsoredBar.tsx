@@ -1,10 +1,11 @@
 "use client";
 
-/** Sponsored bar (40px) + nav (56px) = 96px total header stack. */
-export const SPONSORED_BAR_HEIGHT = "h-10";
-export const NAV_TOP = "top-10";
-export const HEADER_PAD = "pt-24";
-export const MOBILE_NAV_TOP = "top-24";
+/** Sponsored bar (40px + safe area) + nav (56px) = header stack. */
+export const SPONSORED_BAR_HEIGHT =
+  "min-h-10 pt-[env(safe-area-inset-top,0px)] h-[calc(2.5rem+env(safe-area-inset-top,0px))]";
+export const NAV_TOP = "top-[calc(2.5rem+env(safe-area-inset-top,0px))]";
+export const HEADER_PAD = "pt-[calc(6rem+env(safe-area-inset-top,0px))]";
+export const MOBILE_NAV_TOP = "top-[calc(6rem+env(safe-area-inset-top,0px))]";
 
 export default function SponsoredBar() {
   return (

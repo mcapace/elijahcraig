@@ -31,7 +31,7 @@ export default function VideoSection() {
   if (!video.enabled || !embedSrc) return null;
 
   return (
-    <Section id="video" fullBleed className="relative overflow-hidden py-24 md:py-32 lg:py-36">
+    <Section id="video" fullBleed className="relative overflow-hidden py-16 md:py-32 lg:py-36">
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-black via-brand-charcoal/50 to-brand-black"
         aria-hidden
@@ -46,7 +46,7 @@ export default function VideoSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="relative mx-auto max-w-[1200px] px-6 md:px-12"
+        className="relative mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12"
       >
         <motion.div variants={anim.fadeUp} className="mx-auto mb-10 max-w-3xl text-center md:mb-14">
           <p className={`mb-4 ${typeEyebrow}`}>Whisky Advocate</p>
