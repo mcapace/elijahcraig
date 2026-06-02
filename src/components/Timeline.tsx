@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Section from "./Section";
 import { siteConfig } from "@/lib/content";
 import { fadeUp, staggerContainer } from "@/lib/animations";
@@ -8,6 +8,7 @@ import { typeSectionTitle, typeEyebrow } from "@/lib/typography";
 
 export default function Timeline() {
   const { timeline } = siteConfig;
+  const reduced = useReducedMotion();
 
   return (
     <Section id="heritage" fullBleed className="py-20 md:py-28">
@@ -24,19 +25,40 @@ export default function Timeline() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute top-8 right-8 left-8 hidden h-px bg-brand-burgundy/30 md:block" aria-hidden />
+          <div className="absolute top-8 right-8 left-8 hidden h-px overflow-hidden md:block" aria-hidden>
+            <motion.div
+              className="h-full bg-brand-burgundy/40"
+              initial={{ scaleX: reduced ? 1 : 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: reduced ? 0 : 1.2, ease: "easeInOut" }}
+              style={{ transformOrigin: "left center" }}
+            />
+          </div>
 
           <div className="grid gap-8 md:grid-cols-3">
             {timeline.milestones.map((milestone, i) => (
-              <motion.div key={milestone.year} variants={fadeUp} className="relative text-center">
-                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-brand-burgundy/40 bg-brand-black">
+              <motion.div
+                key={milestone.year}
+                variants={fadeUp}
+                className="relative text-center"
+                whileHover={reduced ? undefined : { y: -4 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-brand-burgundy/40 bg-brand-black"
+                  initial={{ scale: reduced ? 1 : 0.8, opacity: reduced ? 1 : 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: reduced ? 0 : i * 0.15, duration: 0.5 }}
+                >
                   <span
                     className="text-lg font-light text-brand-gold"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
                     {milestone.year}
                   </span>
-                </div>
+                </motion.div>
                 <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-brand-gold/80">
                   {milestone.label}
                 </p>

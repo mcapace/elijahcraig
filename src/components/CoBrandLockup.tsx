@@ -10,11 +10,42 @@ type CoBrandLockupProps = {
   priority?: boolean;
 };
 
+/** Matched logo heights so EC and WA read at equal visual weight. */
 const sizes = {
-  sm: { ec: "h-5 w-auto sm:h-6", wa: "h-4 w-auto sm:h-5", gap: "gap-2.5", sep: "text-sm" },
-  md: { ec: "h-6 w-auto sm:h-7", wa: "h-5 w-auto sm:h-6", gap: "gap-3", sep: "text-base" },
-  lg: { ec: "h-8 w-auto md:h-9", wa: "h-6 w-auto md:h-7", gap: "gap-4", sep: "text-lg" },
+  sm: { height: 24, maxWidth: 110, gap: "gap-3", sep: "text-sm" },
+  md: { height: 28, maxWidth: 130, gap: "gap-3.5", sep: "text-base" },
+  lg: { height: 36, maxWidth: 160, gap: "gap-4", sep: "text-lg" },
 };
+
+function LogoMark({
+  src,
+  alt,
+  height,
+  maxWidth,
+  priority,
+}: {
+  src: string;
+  alt: string;
+  height: number;
+  maxWidth: number;
+  priority?: boolean;
+}) {
+  return (
+    <div
+      className="flex shrink-0 items-center justify-center"
+      style={{ height, width: maxWidth }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={maxWidth}
+        height={height}
+        priority={priority}
+        className="max-h-full max-w-full object-contain"
+      />
+    </div>
+  );
+}
 
 export default function CoBrandLockup({
   variant = "on-dark",
@@ -32,27 +63,25 @@ export default function CoBrandLockup({
       className={`flex items-center justify-center ${s.gap} ${className}`.trim()}
       aria-label={`${brand.name} and ${publisher.name}`}
     >
-      <Image
+      <LogoMark
         src={ecLogo}
         alt={brand.name}
-        width={200}
-        height={40}
+        height={s.height}
+        maxWidth={s.maxWidth}
         priority={priority}
-        className={`${s.ec} shrink-0 object-contain`}
       />
       <span
-        className={`font-light leading-none text-brand-cream/35 ${s.sep}`}
+        className={`font-light leading-none text-brand-cream/30 ${s.sep}`}
         aria-hidden
       >
         ×
       </span>
-      <Image
+      <LogoMark
         src={waLogo}
         alt={publisher.name}
-        width={160}
-        height={40}
+        height={s.height}
+        maxWidth={s.maxWidth}
         priority={priority}
-        className={`${s.wa} shrink-0 object-contain ${variant === "on-dark" ? "opacity-95" : ""}`}
       />
     </div>
   );

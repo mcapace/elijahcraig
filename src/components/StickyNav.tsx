@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import CoBrandLockup from "./CoBrandLockup";
+import SponsoredBar, { MOBILE_NAV_TOP, NAV_TOP } from "./SponsoredBar";
 import { siteConfig } from "@/lib/content";
 import { typeButtonPrimary } from "@/lib/typography";
 
@@ -33,7 +34,11 @@ export default function StickyNav() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[100] border-b border-white/[0.06] bg-brand-black/95 shadow-[0_1px_0_rgba(122,48,63,0.12)] backdrop-blur-xl">
+      <SponsoredBar />
+
+      <header
+        className={`fixed ${NAV_TOP} right-0 left-0 z-[100] border-b border-white/[0.06] bg-brand-black/95 shadow-[0_1px_0_rgba(122,48,63,0.12)] backdrop-blur-xl`}
+      >
         <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
           <button
             type="button"
@@ -41,13 +46,7 @@ export default function StickyNav() {
             className="flex shrink-0 items-center rounded-sm outline-none ring-brand-burgundy/40 focus-visible:ring-2"
             aria-label={`${siteConfig.brand.name} — home`}
           >
-            <Image
-              src={siteConfig.brand.logo}
-              alt=""
-              width={140}
-              height={28}
-              className="h-5 w-auto sm:h-6"
-            />
+            <CoBrandLockup size="sm" />
           </button>
 
           <nav className="hidden items-center lg:flex" aria-label="Page sections">
@@ -72,7 +71,6 @@ export default function StickyNav() {
             >
               Buy Now
             </a>
-            <span className="sponsored-label hidden whitespace-nowrap md:inline">Sponsored</span>
             <button
               type="button"
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-brand-cream transition-colors hover:border-brand-burgundy/40 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-burgundy/50 lg:hidden"
@@ -101,7 +99,7 @@ export default function StickyNav() {
             <motion.button
               type="button"
               aria-label="Close menu"
-              className="fixed top-14 right-0 bottom-0 left-0 z-[99] bg-black/70 backdrop-blur-sm lg:hidden"
+              className={`fixed ${MOBILE_NAV_TOP} right-0 bottom-0 left-0 z-[99] bg-black/70 backdrop-blur-sm lg:hidden`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -110,7 +108,7 @@ export default function StickyNav() {
             />
             <motion.nav
               id="mobile-nav"
-              className="fixed top-14 left-0 right-0 z-[100] max-h-[min(70vh,520px)] overflow-y-auto border-b border-white/10 bg-brand-black/98 px-4 py-4 shadow-xl backdrop-blur-xl lg:hidden"
+              className={`fixed ${MOBILE_NAV_TOP} left-0 right-0 z-[100] max-h-[min(70vh,520px)] overflow-y-auto border-b border-white/10 bg-brand-black/98 px-4 py-4 shadow-xl backdrop-blur-xl lg:hidden`}
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}

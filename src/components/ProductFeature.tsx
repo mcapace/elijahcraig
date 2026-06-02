@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { siteConfig } from "@/lib/content";
 import { useScrollAnimationVariants } from "@/hooks/useScrollAnimationVariants";
@@ -9,6 +9,7 @@ import { typeButtonPrimary, typeButtonSecondary, typeSectionTitle, typeEyebrow }
 export default function ProductFeature() {
   const { product } = siteConfig;
   const anim = useScrollAnimationVariants();
+  const reduced = useReducedMotion();
 
   return (
     <section id={product.id} className="bg-brand-black py-20 md:py-28">
@@ -20,14 +21,24 @@ export default function ProductFeature() {
         className="mx-auto grid max-w-[1100px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-12"
       >
         <motion.div variants={anim.slideInLeft} className="relative mx-auto w-full max-w-sm">
-          <div className="absolute inset-0 rounded-full bg-brand-burgundy/10 blur-3xl" aria-hidden />
-          <Image
-            src={product.imageSrc}
-            alt={product.name}
-            width={480}
-            height={720}
-            className="relative z-10 mx-auto h-auto w-full max-w-[320px] object-contain drop-shadow-2xl md:max-w-none"
+          <motion.div
+            className="absolute inset-0 rounded-full bg-brand-burgundy/10 blur-3xl"
+            animate={reduced ? undefined : { opacity: [0.4, 0.65, 0.4], scale: [1, 1.05, 1] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden
           />
+          <motion.div
+            animate={reduced ? undefined : { y: [0, -10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Image
+              src={product.imageSrc}
+              alt={product.name}
+              width={480}
+              height={720}
+              className="relative z-10 mx-auto h-auto w-full max-w-[320px] object-contain drop-shadow-2xl md:max-w-none"
+            />
+          </motion.div>
         </motion.div>
 
         <motion.div variants={anim.slideInRight}>
