@@ -16,7 +16,7 @@ function AnimatedBar({
   const reduced = useReducedMotion();
 
   return (
-    <div className="h-2 overflow-hidden bg-brand-cream/10">
+    <div className="h-2.5 overflow-hidden bg-brand-cream/10 md:h-3">
       <motion.div
         className="h-full bg-gradient-to-r from-brand-burgundy via-brand-burgundy-light to-brand-gold"
         initial={{ width: reduced ? `${percent}%` : "0%" }}
@@ -68,9 +68,9 @@ export default function WhiskeyInfographic() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: reduced ? 0 : i * 0.08, duration: 0.6 }}
-              className="bg-brand-black/80 px-4 py-6 text-center"
+              className="bg-brand-black/80 px-4 py-7 text-center sm:px-6 sm:py-8"
             >
-              <p className="mb-1 text-[0.6rem] uppercase tracking-[0.22em] text-brand-cream/50">
+              <p className="mb-2 text-[0.65rem] uppercase tracking-[0.2em] text-brand-cream/60 sm:text-xs md:text-sm">
                 {stat.label}
               </p>
               <motion.p
@@ -78,7 +78,7 @@ export default function WhiskeyInfographic() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: reduced ? 0 : 0.2 + i * 0.08, duration: 0.5 }}
-                className="text-2xl font-light text-brand-gold md:text-3xl"
+                className="text-2xl font-light text-brand-gold sm:text-3xl md:text-4xl"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 {stat.value}
@@ -87,10 +87,10 @@ export default function WhiskeyInfographic() {
           ))}
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
           <motion.div
             variants={anim.fadeUp}
-            className="relative flex flex-col justify-center overflow-hidden border border-brand-cream/8 bg-brand-black/40 p-8 md:p-10"
+            className="relative flex flex-col justify-center overflow-hidden border border-brand-cream/8 bg-brand-black/40 p-8 md:p-12"
           >
             {!reduced && (
               <motion.div
@@ -101,10 +101,13 @@ export default function WhiskeyInfographic() {
               />
             )}
 
-            <h3 className="relative mb-6 text-center text-sm font-medium uppercase tracking-[0.2em] text-brand-cream/70">
+            <h3
+              className="relative mb-8 text-center text-base font-medium uppercase tracking-[0.18em] text-brand-gold md:text-lg"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
               Decode the Batch · A925
             </h3>
-            <div className="relative flex items-stretch justify-center gap-3 md:gap-4">
+            <div className="relative flex items-stretch justify-center gap-4 md:gap-6">
               {batchParts.map((part, i) => (
                 <motion.div
                   key={part.key}
@@ -114,38 +117,41 @@ export default function WhiskeyInfographic() {
                   transition={{ delay: reduced ? 0 : i * 0.12, duration: 0.55 }}
                   className="flex flex-1 flex-col items-center text-center"
                 >
-                  <span className="mb-2 text-[0.55rem] uppercase tracking-[0.18em] text-brand-cream/45">
+                  <span className="mb-3 text-xs uppercase tracking-[0.16em] text-brand-cream/65 md:text-sm">
                     {part.title}
                   </span>
                   <motion.span
                     whileHover={reduced ? undefined : { scale: 1.05, borderColor: "rgba(201,169,110,0.5)" }}
-                    className="flex h-16 w-full max-w-[88px] items-center justify-center border border-brand-burgundy/40 bg-brand-burgundy/10 text-3xl font-light text-brand-gold transition-colors md:h-20 md:text-4xl"
+                    className="flex h-20 w-full max-w-[100px] items-center justify-center border border-brand-burgundy/40 bg-brand-burgundy/10 text-4xl font-light text-brand-gold transition-colors md:h-24 md:max-w-[120px] md:text-5xl"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
                     {part.symbol}
                   </motion.span>
-                  <span className="mt-3 text-[0.65rem] leading-snug text-brand-cream/60">
+                  <span className="mt-4 max-w-[9rem] text-sm leading-snug text-brand-cream/75 md:max-w-[10rem] md:text-base">
                     {part.meaning}
                   </span>
                 </motion.div>
               ))}
             </div>
-            <p className="relative mt-8 text-center text-xs text-brand-cream/50">
+            <p className="relative mt-10 text-center text-sm text-brand-cream/60 md:text-base">
               New batches release every {infographic.releases.join(", ")}
             </p>
           </motion.div>
 
-          <motion.div variants={anim.fadeUp} className="flex flex-col gap-8">
-            <div className="border border-brand-cream/8 bg-brand-black/40 p-8 md:p-10">
-              <h3 className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-brand-cream/70">
+          <motion.div variants={anim.fadeUp} className="flex flex-col gap-8 lg:gap-10">
+            <div className="border border-brand-cream/8 bg-brand-black/40 p-8 md:p-12">
+              <h3
+                className="mb-8 text-base font-medium uppercase tracking-[0.18em] text-brand-gold md:text-lg"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
                 Mash Bill
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-5 md:space-y-6">
                 {infographic.mashBill.map((item, i) => (
                   <div key={item.grain}>
-                    <div className="mb-1.5 flex justify-between text-xs">
-                      <span className="text-brand-cream/75">{item.grain}</span>
-                      <span className="text-brand-gold">{item.percent}%</span>
+                    <div className="mb-2 flex justify-between text-sm md:text-base">
+                      <span className="text-brand-cream/85">{item.grain}</span>
+                      <span className="font-medium text-brand-gold">{item.percent}%</span>
                     </div>
                     <AnimatedBar percent={item.percent} delay={0.15 + i * 0.12} />
                   </div>
@@ -153,7 +159,7 @@ export default function WhiskeyInfographic() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-px overflow-hidden border border-brand-cream/8 bg-brand-cream/8">
+            <div className="grid grid-cols-1 gap-px overflow-hidden border border-brand-cream/8 bg-brand-cream/8 sm:grid-cols-3">
               {(["nose", "palate", "finish"] as const).map((note, i) => (
                 <motion.div
                   key={note}
@@ -162,12 +168,12 @@ export default function WhiskeyInfographic() {
                   viewport={{ once: true }}
                   transition={{ delay: reduced ? 0 : 0.1 + i * 0.1, duration: 0.5 }}
                   whileHover={reduced ? undefined : { backgroundColor: "rgba(122,48,63,0.15)" }}
-                  className="bg-brand-black/40 p-4 text-center transition-colors md:p-5"
+                  className="bg-brand-black/40 p-6 text-center transition-colors sm:p-5 md:p-7"
                 >
-                  <p className="mb-2 text-[0.55rem] uppercase tracking-[0.18em] text-brand-burgundy-light">
+                  <p className="mb-3 text-xs uppercase tracking-[0.16em] text-brand-burgundy-light md:text-sm">
                     {note === "palate" ? "Taste" : note}
                   </p>
-                  <p className="text-[0.7rem] leading-relaxed text-brand-cream/70">
+                  <p className="text-sm leading-relaxed text-brand-cream/80 md:text-base md:leading-7">
                     {product.tastingNotes[note]}
                   </p>
                 </motion.div>

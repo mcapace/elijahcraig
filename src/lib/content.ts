@@ -17,7 +17,7 @@ export const siteConfig = {
     imageSrc: "/assets/hero/barrel-proof-rye-hero-desktop.jpg",
     mobileImageSrc: "/assets/hero/barrel-proof-rye-hero-mobile.jpg",
     headline: "Barrel Proof Rye",
-    subheadline: "Whisky Advocate's Reigning Whiskey of the Year",
+    subheadline: "Whisky Advocate's #1 Whisky of 2025",
     badge: {
       rank: "#1",
       year: "2025",

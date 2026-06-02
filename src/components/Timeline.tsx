@@ -25,9 +25,9 @@ export default function Timeline() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute top-8 right-8 left-8 hidden h-px overflow-hidden md:block" aria-hidden>
+          <div className="absolute top-10 right-10 left-10 hidden h-px overflow-hidden md:block lg:top-12" aria-hidden>
             <motion.div
-              className="h-full bg-brand-burgundy/40"
+              className="h-full bg-brand-burgundy/50"
               initial={{ scaleX: reduced ? 1 : 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -36,7 +36,7 @@ export default function Timeline() {
             />
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
             {timeline.milestones.map((milestone, i) => (
               <motion.div
                 key={milestone.year}
@@ -46,27 +46,27 @@ export default function Timeline() {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-brand-burgundy/40 bg-brand-black"
+                  className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-brand-burgundy/50 bg-brand-black md:mb-8 md:h-24 md:w-24"
                   initial={{ scale: reduced ? 1 : 0.8, opacity: reduced ? 1 : 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: reduced ? 0 : i * 0.15, duration: 0.5 }}
                 >
                   <span
-                    className="text-lg font-light text-brand-gold"
+                    className="text-xl font-light text-brand-gold md:text-2xl"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
                     {milestone.year}
                   </span>
                 </motion.div>
-                <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-brand-gold/80">
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.16em] text-brand-gold md:text-base">
                   {milestone.label}
                 </p>
-                <p className="mx-auto max-w-[260px] text-sm leading-relaxed text-brand-cream/75">
+                <p className="mx-auto max-w-[280px] text-base leading-relaxed text-brand-cream/85 md:max-w-[320px] md:text-lg md:leading-8">
                   {milestone.body}
                 </p>
                 {i < timeline.milestones.length - 1 && (
-                  <div className="mx-auto mt-8 h-8 w-px bg-brand-burgundy/20 md:hidden" aria-hidden />
+                  <div className="mx-auto mt-10 h-10 w-px bg-brand-burgundy/25 md:hidden" aria-hidden />
                 )}
               </motion.div>
             ))}
