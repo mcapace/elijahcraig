@@ -70,8 +70,15 @@ export const siteConfig = {
       { grain: "Malted Barley", percent: 14, color: "#C9A96E" },
     ],
     mashBillNote: "A high-corn rye recipe that leans remarkably sweet — approachable for a barrel proof rye.",
+    flavorSubheading: "Tasting Notes",
+    flavorHeading: "The Flavor Profile",
     flavorIntro:
-      "Thanks to the mash bill and long 12-year maturation, A925 is soft, sweet, and inviting — complex without overwhelming the palate.",
+      "Thanks to the mash bill and long 12-year maturation, A925 is soft, sweet, and inviting — complex without being overwhelming.",
+    tastingNotes: [
+      { key: "nose", label: "Nose", accent: "from-brand-burgundy/80 to-brand-burgundy-light/40" },
+      { key: "palate", label: "Palate", accent: "from-brand-amber to-brand-copper/80" },
+      { key: "finish", label: "Finish", accent: "from-brand-gold/70 to-brand-copper/40" },
+    ],
     releases: ["January", "May", "September"],
   },
   product: {

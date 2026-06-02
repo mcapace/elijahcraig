@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Section from "./Section";
 import { siteConfig } from "@/lib/content";
 import { useScrollAnimationVariants } from "@/hooks/useScrollAnimationVariants";
-import { typeEyebrow, typeSectionTitle, typeInfographicTitle } from "@/lib/typography";
+import { typeEyebrow, typeEyebrowLight, typeSectionTitle, typeInfographicTitle } from "@/lib/typography";
 
 const viewport = { once: true, amount: 0.25 as const };
 
@@ -50,13 +50,9 @@ function MashBillStack({
 
 function BatchCircle({
   symbol,
-  title,
-  meaning,
   index,
 }: {
   symbol: string;
-  title: string;
-  meaning: string;
   index: number;
 }) {
   const reduced = useReducedMotion();
@@ -72,47 +68,13 @@ function BatchCircle({
         damping: 18,
         delay: reduced ? 0 : 0.2 + index * 0.18,
       }}
-      className="relative flex min-w-0 flex-1 flex-col items-center text-center"
+      whileHover={reduced ? undefined : { scale: 1.05 }}
+      className="relative z-10 mx-auto flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-brand-gold/40 bg-brand-black ring-[6px] ring-brand-black md:h-20 md:w-20 md:ring-8"
     >
-      <p className="mb-3 font-[family-name:var(--font-body)] text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-brand-cream/55">
-        {title}
-      </p>
-
-      <motion.div
-        className="relative mb-4 flex h-[4.5rem] w-[4.5rem] items-center justify-center md:h-20 md:w-20"
-        whileHover={reduced ? undefined : { scale: 1.06 }}
-        animate={
-          reduced
-            ? undefined
-            : {
-                boxShadow: [
-                  "0 0 0 rgba(201,169,110,0)",
-                  "0 0 28px rgba(201,169,110,0.25)",
-                  "0 0 0 rgba(201,169,110,0)",
-                ],
-              }
-        }
-        transition={
-          reduced
-            ? undefined
-            : { duration: 2.8, repeat: Infinity, delay: index * 0.4, ease: "easeInOut" }
-        }
-      >
-        <div className="absolute inset-0 rounded-full border border-brand-gold/40 bg-brand-burgundy/25" />
-        <span className="relative font-[family-name:var(--font-display)] text-4xl font-medium text-brand-gold md:text-5xl">
-          {symbol}
-        </span>
-      </motion.div>
-
-      <motion.p
-        initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewport}
-        transition={{ delay: reduced ? 0 : 0.45 + index * 0.15, duration: 0.5 }}
-        className="max-w-[9rem] text-sm leading-snug text-brand-cream/78 md:max-w-[10rem] md:text-base"
-      >
-        {meaning}
-      </motion.p>
+      <div className="absolute inset-0 rounded-full bg-brand-burgundy/25" />
+      <span className="relative font-[family-name:var(--font-display)] text-4xl font-medium text-brand-gold md:text-5xl">
+        {symbol}
+      </span>
     </motion.div>
   );
 }
@@ -126,12 +88,6 @@ export default function WhiskeyInfographic() {
     { key: "letter", ...infographic.batchDecode.letter },
     { key: "month", ...infographic.batchDecode.month },
     { key: "year", ...infographic.batchDecode.year },
-  ];
-
-  const tastingNotes = [
-    { key: "nose" as const, label: "Nose", accent: "from-brand-burgundy/80 to-brand-burgundy-light/40" },
-    { key: "palate" as const, label: "Palate", accent: "from-brand-amber/80 to-brand-gold/30" },
-    { key: "finish" as const, label: "Finish", accent: "from-brand-gold/70 to-brand-copper/40" },
   ];
 
   return (
@@ -211,38 +167,46 @@ export default function WhiskeyInfographic() {
               A925
             </motion.p>
 
-            <div className="relative mx-auto max-w-3xl">
-              <motion.div
-                className="absolute left-[16%] right-[16%] top-[5.75rem] hidden h-px origin-left bg-gradient-to-r from-brand-burgundy/30 via-brand-gold/50 to-brand-burgundy/30 sm:block md:top-[6.25rem]"
-                initial={{ scaleX: reduced ? 1 : 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={viewport}
-                transition={{ duration: reduced ? 0 : 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                aria-hidden
-              />
+            <div className="relative mx-auto max-w-2xl md:max-w-3xl">
+              <div className="grid grid-cols-3 gap-x-3 md:gap-x-6">
+                {batchParts.map((part) => (
+                  <p
+                    key={`${part.key}-label`}
+                    className="text-center font-[family-name:var(--font-body)] text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-brand-cream/55"
+                  >
+                    {part.title}
+                  </p>
+                ))}
+              </div>
 
-              <div className="relative flex items-start justify-center gap-3 sm:gap-6 md:gap-10">
+              <div className="relative my-4 grid grid-cols-3 items-center md:my-5">
+                <motion.div
+                  className="pointer-events-none absolute top-1/2 right-[16.666%] left-[16.666%] z-0 h-px -translate-y-1/2 origin-left bg-brand-gold/25"
+                  initial={{ scaleX: reduced ? 1 : 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={viewport}
+                  transition={{ duration: reduced ? 0 : 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden
+                />
                 {batchParts.map((part, i) => (
-                  <div key={part.key} className="contents">
-                    {i > 0 && (
-                      <motion.span
-                        initial={{ opacity: reduced ? 1 : 0, scale: reduced ? 1 : 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={viewport}
-                        transition={{ delay: reduced ? 0 : 0.35 + i * 0.15, type: "spring", stiffness: 300, damping: 20 }}
-                        className="mt-12 hidden shrink-0 font-[family-name:var(--font-display)] text-2xl text-brand-gold/40 sm:block md:text-3xl"
-                        aria-hidden
-                      >
-                        ·
-                      </motion.span>
-                    )}
-                    <BatchCircle
-                      symbol={part.symbol}
-                      title={part.title}
-                      meaning={part.meaning}
-                      index={i}
-                    />
+                  <div key={part.key} className="flex justify-center">
+                    <BatchCircle symbol={part.symbol} index={i} />
                   </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-3 gap-x-3 md:gap-x-6">
+                {batchParts.map((part, i) => (
+                  <motion.p
+                    key={`${part.key}-meaning`}
+                    initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewport}
+                    transition={{ delay: reduced ? 0 : 0.45 + i * 0.15, duration: 0.5 }}
+                    className="mx-auto max-w-[9rem] text-center text-sm leading-snug text-brand-cream/78 md:max-w-[10rem] md:text-base"
+                  >
+                    {part.meaning}
+                  </motion.p>
                 ))}
               </div>
             </div>
@@ -347,13 +311,16 @@ export default function WhiskeyInfographic() {
         </motion.div>
 
         <motion.div variants={anim.fadeUp}>
-          <p className={`mb-3 text-center ${typeInfographicTitle}`}>The Flavor Profile</p>
-          <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-brand-cream/72 md:text-base md:leading-7">
-            {infographic.flavorIntro}
-          </p>
+          <div className="mb-10 text-center md:mb-12">
+            <p className={`mb-3 ${typeEyebrow}`}>{infographic.flavorSubheading}</p>
+            <p className={typeInfographicTitle}>{infographic.flavorHeading}</p>
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-brand-cream/72 md:text-base md:leading-7">
+              {infographic.flavorIntro}
+            </p>
+          </div>
 
           <div className="grid gap-5 md:grid-cols-3">
-            {tastingNotes.map((note, i) => (
+            {infographic.tastingNotes.map((note, i) => (
               <motion.div
                 key={note.key}
                 initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 20 }}
@@ -372,11 +339,9 @@ export default function WhiskeyInfographic() {
                   style={{ transformOrigin: "left center" }}
                 />
                 <div className="p-6 md:p-7">
-                  <p className="mb-3 font-[family-name:var(--font-body)] text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-brand-gold">
-                    {note.label}
-                  </p>
+                  <p className={`mb-3 ${typeEyebrowLight}`}>{note.label}</p>
                   <p className="text-sm leading-relaxed text-brand-cream/82 md:text-base md:leading-7">
-                    {product.tastingNotes[note.key]}
+                    {product.tastingNotes[note.key as keyof typeof product.tastingNotes]}
                   </p>
                 </div>
               </motion.div>

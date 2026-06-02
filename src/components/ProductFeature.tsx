@@ -36,8 +36,8 @@ export default function ProductFeature() {
             <Image
               src={product.imageSrc}
               alt={product.name}
-              width={800}
-              height={800}
+              width={358}
+              height={824}
               className="relative z-10 h-auto w-full max-w-[260px] object-contain drop-shadow-[0_24px_48px_rgba(0,0,0,0.55)] md:max-w-[320px]"
             />
           </motion.div>
