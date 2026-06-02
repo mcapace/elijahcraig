@@ -11,9 +11,9 @@ type CoBrandLockupProps = {
 };
 
 const sizes = {
-  sm: { logoHeight: 22, gap: 10, cross: 9 },
-  md: { logoHeight: 26, gap: 12, cross: 10 },
-  lg: { logoHeight: 34, gap: 14, cross: 12 },
+  sm: { logoHeight: 22, waLogoHeight: 25, gap: 10, cross: 9 },
+  md: { logoHeight: 26, waLogoHeight: 30, gap: 12, cross: 10 },
+  lg: { logoHeight: 34, waLogoHeight: 39, gap: 14, cross: 12 },
 };
 
 function CrossMark({ size }: { size: number }) {
@@ -78,7 +78,7 @@ export default function CoBrandLockup({
         height={135}
         priority={priority}
         className="block w-auto max-w-none object-contain object-left"
-        style={{ height: s.logoHeight }}
+        style={{ height: s.waLogoHeight }}
       />
     </div>
   );
