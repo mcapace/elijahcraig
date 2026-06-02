@@ -30,14 +30,15 @@ export default function ProductFeature() {
           <motion.div
             animate={reduced ? undefined : { y: [0, -10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative rounded-sm bg-gradient-to-b from-brand-cream/[0.06] to-transparent p-6 ring-1 ring-brand-cream/10"
+            className="relative flex items-center justify-center py-4"
           >
+            <div className="absolute h-48 w-48 rounded-full bg-brand-burgundy/15 blur-3xl md:h-64 md:w-64" aria-hidden />
             <Image
               src={product.imageSrc}
               alt={product.name}
-              width={480}
-              height={720}
-              className="relative z-10 mx-auto h-auto w-full max-w-[280px] object-contain drop-shadow-2xl md:max-w-none"
+              width={800}
+              height={800}
+              className="relative z-10 h-auto w-full max-w-[260px] object-contain drop-shadow-[0_24px_48px_rgba(0,0,0,0.55)] md:max-w-[320px]"
             />
           </motion.div>
         </motion.div>

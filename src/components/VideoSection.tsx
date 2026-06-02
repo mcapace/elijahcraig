@@ -31,7 +31,7 @@ export default function VideoSection() {
   if (!video.enabled || !embedSrc) return null;
 
   return (
-    <Section id="video" fullBleed className="relative overflow-hidden py-24 md:py-32 lg:py-40">
+    <Section id="video" fullBleed className="relative overflow-hidden py-24 md:py-32 lg:py-36">
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-black via-brand-charcoal/50 to-brand-black"
         aria-hidden
@@ -46,21 +46,15 @@ export default function VideoSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10"
+        className="relative mx-auto max-w-[1200px] px-6 md:px-12"
       >
-        <div className="mb-10 grid gap-8 lg:mb-14 lg:grid-cols-[minmax(0,380px)_1fr] lg:items-end lg:gap-14 xl:grid-cols-[minmax(0,420px)_1fr]">
-          <motion.div variants={anim.fadeUp} className="text-center lg:text-left">
-            <p className={`mb-4 ${typeEyebrow}`}>Whisky Advocate</p>
-            <h2 className={`mb-5 ${typeSectionTitle}`}>{video.heading}</h2>
-            <p className="text-base leading-relaxed text-brand-cream/75 md:text-lg md:leading-8">
-              {video.subheading}
-            </p>
-          </motion.div>
-
-          <motion.div variants={anim.fadeUp} className="hidden lg:block">
-            <div className="h-px w-full bg-gradient-to-r from-brand-burgundy/40 via-brand-gold/30 to-transparent" />
-          </motion.div>
-        </div>
+        <motion.div variants={anim.fadeUp} className="mx-auto mb-10 max-w-3xl text-center md:mb-14">
+          <p className={`mb-4 ${typeEyebrow}`}>Whisky Advocate</p>
+          <h2 className={`mb-5 ${typeSectionTitle}`}>{video.heading}</h2>
+          <p className="text-base leading-relaxed text-brand-cream/75 md:text-lg md:leading-8">
+            {video.subheading}
+          </p>
+        </motion.div>
 
         <motion.div
           variants={anim.fadeUp}

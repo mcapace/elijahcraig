@@ -10,42 +10,34 @@ type CoBrandLockupProps = {
   priority?: boolean;
 };
 
-/** Matched logo heights so EC and WA read at equal visual weight. */
 const sizes = {
-  sm: { height: 24, maxWidth: 110, gap: "gap-2.5", sepWidth: 18, sepSize: "text-[0.85rem]" },
-  md: { height: 28, maxWidth: 130, gap: "gap-3", sepWidth: 20, sepSize: "text-base" },
-  lg: { height: 36, maxWidth: 160, gap: "gap-3.5", sepWidth: 24, sepSize: "text-lg" },
+  sm: { logoHeight: 22, gap: 10, cross: 9 },
+  md: { logoHeight: 26, gap: 12, cross: 10 },
+  lg: { logoHeight: 34, gap: 14, cross: 12 },
 };
 
-function LogoMark({
-  src,
-  alt,
-  height,
-  maxWidth,
-  priority,
-  align,
-}: {
-  src: string;
-  alt: string;
-  height: number;
-  maxWidth: number;
-  priority?: boolean;
-  align: "start" | "end";
-}) {
+function CrossMark({ size }: { size: number }) {
   return (
-    <div
-      className={`flex shrink-0 items-center ${align === "end" ? "justify-end" : "justify-start"}`}
-      style={{ height, width: maxWidth }}
+    <span
+      className="inline-flex shrink-0 items-center justify-center text-brand-cream/35"
+      style={{ width: size, height: size }}
+      aria-hidden
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={maxWidth}
-        height={height}
-        priority={priority}
-        className="max-h-full max-w-full object-contain"
-      />
-    </div>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 12 12"
+        fill="none"
+        className="block"
+      >
+        <path
+          d="M2.25 2.25L9.75 9.75M9.75 2.25L2.25 9.75"
+          stroke="currentColor"
+          strokeWidth="1.15"
+          strokeLinecap="round"
+        />
+      </svg>
+    </span>
   );
 }
 
@@ -62,31 +54,31 @@ export default function CoBrandLockup({
 
   return (
     <div
-      className={`inline-flex items-center ${s.gap} ${className}`.trim()}
+      className={`inline-grid shrink-0 items-center ${className}`.trim()}
+      style={{
+        gridTemplateColumns: "auto max-content auto",
+        columnGap: s.gap,
+      }}
       aria-label={`${brand.name} and ${publisher.name}`}
     >
-      <LogoMark
+      <Image
         src={ecLogo}
         alt={brand.name}
-        height={s.height}
-        maxWidth={s.maxWidth}
+        width={209}
+        height={42}
         priority={priority}
-        align="end"
+        className="block w-auto max-w-none object-contain object-right"
+        style={{ height: s.logoHeight }}
       />
-      <div
-        className="flex shrink-0 items-center justify-center text-brand-cream/30"
-        style={{ height: s.height, width: s.sepWidth }}
-        aria-hidden
-      >
-        <span className={`block leading-none ${s.sepSize}`}>×</span>
-      </div>
-      <LogoMark
+      <CrossMark size={s.cross} />
+      <Image
         src={waLogo}
         alt={publisher.name}
-        height={s.height}
-        maxWidth={s.maxWidth}
+        width={374}
+        height={135}
         priority={priority}
-        align="start"
+        className="block w-auto max-w-none object-contain object-left"
+        style={{ height: s.logoHeight }}
       />
     </div>
   );
