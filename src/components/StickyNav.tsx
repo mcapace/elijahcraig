@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import CoBrandLockup from "./CoBrandLockup";
+import Image from "next/image";
 import { siteConfig } from "@/lib/content";
 import { typeButtonPrimary } from "@/lib/typography";
 
 const NAV_LINKS = [
   { id: "brand-story", label: "Story" },
+  { id: "at-a-glance", label: "At a Glance" },
   { id: "barrel-proof-rye", label: "The Rye" },
-  { id: "craftsmanship", label: "Craft" },
-  { id: "heritage", label: "Heritage" },
+  { id: "heritage", label: "Legacy" },
   { id: "accolades", label: "Awards" },
 ] as const;
 
@@ -41,10 +41,13 @@ export default function StickyNav() {
             className="flex shrink-0 items-center rounded-sm outline-none ring-brand-burgundy/40 focus-visible:ring-2"
             aria-label={`${siteConfig.brand.name} — home`}
           >
-            <CoBrandLockup size="sm" className="hidden sm:flex" />
-            <span className="sm:hidden">
-              <CoBrandLockup size="sm" />
-            </span>
+            <Image
+              src={siteConfig.brand.logo}
+              alt=""
+              width={140}
+              height={28}
+              className="h-5 w-auto sm:h-6"
+            />
           </button>
 
           <nav className="hidden items-center lg:flex" aria-label="Page sections">

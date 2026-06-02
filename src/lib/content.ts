@@ -28,12 +28,29 @@ export const siteConfig = {
   },
   brandStory: {
     heading: "About Elijah Craig",
-    body: [
-      "Elijah Craig is one of the most award-winning families of premium Bourbons and Ryes. Its inaugural Barrel Proof Rye release (2025) is Whisky Advocate's reigning Whiskey of the Year.",
-      "The Reverend Elijah Craig, the brand's namesake, is known as \"The Father of Bourbon,\" having established his distillery in 1789 on the banks of Elkhorn Creek in modern day Georgetown, Kentucky. He is credited with being the first distiller to age his wares in charred oak barrels. The clear, unaged corn liquor became transformed into a bold amber liquid with a distinctively smooth flavor that makes Bourbon what it is today.",
-      "Produced by Heaven Hill Distillery, the family of whiskeys includes Elijah Craig Small Batch, Elijah Craig Straight Rye Whiskey, Elijah Craig Toasted Barrel Bourbon, Elijah Craig Barrel Proof Kentucky Straight Bourbon Whiskey, and Elijah Craig Single Barrel Kentucky Straight Bourbon Whiskey.",
-      "Along with Whisky Advocate's Whiskey of the Year, the brand's accolades have included Best Small Batch Bourbon, Best Single Barrel Bourbon (aged 11+ years) and Best Straight Bourbon at the San Francisco World Spirits Competition, and Excellent Highly Recommended honors at the Ultimate Spirits Challenge.",
+    lead: "One of the most award-winning families of premium Bourbons and Ryes — now with its inaugural Barrel Proof Rye crowned Whisky Advocate's reigning Whiskey of the Year.",
+    body: "Known as \"The Father of Bourbon,\" Rev. Elijah Craig established his distillery in 1789 on the banks of Elkhorn Creek in Georgetown, Kentucky — pioneering the charred oak barrel aging that defines American whiskey today. Produced by Heaven Hill Distillery with the same hand-selected barrel craftsmanship that began in 1986.",
+    highlights: [
+      { label: "Whiskey of the Year", value: "2025" },
+      { label: "Established", value: "1789" },
+      { label: "Distillery", value: "Heaven Hill" },
+      { label: "Release", value: "Batch A925" },
     ],
+  },
+  infographic: {
+    heading: "Barrel Proof Rye at a Glance",
+    subheading: "Everything you need to know about Batch A925",
+    batchDecode: {
+      letter: { symbol: "A", meaning: "1st release of the year" },
+      month: { symbol: "9", meaning: "September" },
+      year: { symbol: "25", meaning: "2025" },
+    },
+    mashBill: [
+      { grain: "Rye", percent: 51 },
+      { grain: "Corn", percent: 35 },
+      { grain: "Malted Barley", percent: 14 },
+    ],
+    releases: ["January", "May", "September"],
   },
   product: {
     id: "barrel-proof-rye",
@@ -42,7 +59,7 @@ export const siteConfig = {
     batch: "Batch A925",
     tagline: "The First-Ever Barrel Proof Kentucky Straight Rye Whiskey",
     description:
-      "Elijah Craig expands its acclaimed barrel proof lineup with a new rye expression — bottled uncut and non-chill filtered in its purest form. Under the guidance of Master Distiller Conor O'Driscoll, barrels were selected for extraordinary depth and approachability, making this ideal for barrel proof first-timers and experienced palates alike.",
+      "The first barrel proof Kentucky straight rye in the Elijah Craig portfolio — bottled uncut and non-chill filtered at 108 proof after 12 years in charred oak.",
     stats: [
       { label: "Age", value: "12 Yrs, 3 Mo" },
       { label: "Proof", value: "108" },
@@ -68,77 +85,46 @@ export const siteConfig = {
       source: "Conor O'Driscoll, Master Distiller, Elijah Craig Bourbon",
     },
   },
-  craftsmanship: {
-    heading: "Pure, Uncut, Uncompromising",
-    features: [
-      {
-        title: "Barrel Proof Integrity",
-        description:
-          "Bottled uncut and non-chill filtered at the proof drawn directly from the barrel — preserving every nuance of flavor, texture, and character that extended aging and meticulous barrel selection deliver.",
-      },
-      {
-        title: "The A-B-C Batch System",
-        description:
-          "Barrel Proof Rye releases three times annually — every January, May, and September. Letters A, B, or C indicate the release order; the first number marks the month; the last two digits mark the year. Batch A925 denotes the inaugural September 2025 release.",
-      },
-      {
-        title: "12+ Years in Charred Oak",
-        description:
-          "Aged 12 years and 3 months in Level 3 charred new oak barrels — the same uncompromising standard that has defined Elijah Craig since Heaven Hill's Master Distillers began hand-selecting barrels in 1986.",
-      },
-      {
-        title: "A Historic First for Rye",
-        description:
-          "The first rye whiskey ever named Whisky Advocate's Whiskey of the Year — topping the publication's coveted Top 20 list and marking a landmark achievement for Elijah Craig and the American rye category.",
-      },
-    ],
-  },
-  heritage: {
+  timeline: {
     heading: "Craftsmanship & Legacy",
     milestones: [
       {
         year: "1789",
-        label: "The Beginning",
-        body: "Rev. Elijah Craig establishes his distillery on the banks of Elkhorn Creek — pioneering the charred oak barrel aging that defines Bourbon today.",
+        label: "The Father of Bourbon",
+        body: "Rev. Elijah Craig pioneers charred oak barrel aging in Georgetown, Kentucky.",
       },
       {
         year: "1986",
-        label: "Small Batch Origins",
-        body: "Heaven Hill's Master Distillers begin hand-selecting a small number of the finest barrels long before the term \"small batch\" even existed — giving Elijah Craig an ideal balance of age, robust body, and rich flavor.",
+        label: "Small Batch Begins",
+        body: "Heaven Hill Master Distillers hand-select barrels — long before \"small batch\" existed.",
+      },
+      {
+        year: "2025",
+        label: "Whiskey of the Year",
+        body: "Barrel Proof Rye becomes the first rye ever named Whisky Advocate's top honor.",
       },
     ],
   },
   accolades: [
     {
-      quote: "#1",
-      source: "Whisky Advocate Top 20",
-      detail: "Whiskey of the Year — Barrel Proof Rye (2025)",
-      product: "Barrel Proof Rye",
-      featured: true,
-    },
-    {
-      quote: "Whiskey of the Year",
+      quote: "#1 Top 20",
       source: "Whisky Advocate",
-      detail: "First rye ever to earn the honor",
-      product: "Barrel Proof Rye",
+      detail: "Whiskey of the Year 2025",
     },
     {
-      quote: "Best Small Batch Bourbon",
-      source: "San Francisco World Spirits Competition",
-      detail: "Award-winning excellence",
-      product: "Elijah Craig",
+      quote: "First Rye WOTY",
+      source: "Whisky Advocate",
+      detail: "Historic category first",
     },
     {
-      quote: "Best Single Barrel Bourbon",
-      source: "San Francisco World Spirits Competition",
+      quote: "Best Small Batch",
+      source: "SF World Spirits Competition",
+      detail: "Elijah Craig family",
+    },
+    {
+      quote: "Best Single Barrel",
+      source: "SF World Spirits Competition",
       detail: "Aged 11+ years",
-      product: "Elijah Craig",
-    },
-    {
-      quote: "Excellent Highly Recommended",
-      source: "Ultimate Spirits Challenge",
-      detail: "Consistently recognized",
-      product: "Elijah Craig Family",
     },
   ],
   press: {
