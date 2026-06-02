@@ -17,14 +17,7 @@ export const siteConfig = {
     imageSrc: "/assets/hero/barrel-proof-rye-hero-desktop.jpg",
     mobileImageSrc: "/assets/hero/barrel-proof-rye-hero-mobile.jpg",
     headline: "Barrel Proof Rye",
-    subheadline: "Whisky Advocate's #1 Whisky of 2025",
-    badge: {
-      rank: "#1",
-      year: "2025",
-      title: "Whiskey of the Year",
-      publication: "Whisky Advocate",
-      detail: "Top 20 List",
-    },
+    subheadline: "Whisky Advocate's 2025 Whiskey of the Year",
   },
   brandStory: {
     heading: "About Elijah Craig",
@@ -101,7 +94,7 @@ export const siteConfig = {
       {
         year: "2025",
         label: "Whiskey of the Year",
-        body: "Barrel Proof Rye becomes the first rye ever named Whisky Advocate's top honor.",
+        body: "Barrel Proof Rye becomes the first rye ever named Whisky Advocate's Whiskey of the Year.",
       },
     ],
   },
@@ -112,7 +105,7 @@ export const siteConfig = {
       detail: "Whiskey of the Year 2025",
     },
     {
-      quote: "First Rye WOTY",
+      quote: "First Rye Whiskey of the Year",
       source: "Whisky Advocate",
       detail: "Historic category first",
     },

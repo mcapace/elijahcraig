@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { siteConfig } from "@/lib/content";
 import { HEADER_PAD } from "./SponsoredBar";
 import { typeButtonPrimary, typeButtonSecondary } from "@/lib/typography";
@@ -50,7 +51,7 @@ function HeroBackground({
 }
 
 export default function Hero() {
-  const { hero } = siteConfig;
+  const { hero, brand } = siteConfig;
   const reduceMotion = useReducedMotion();
 
   return (
@@ -73,17 +74,16 @@ export default function Hero() {
           initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.7 }}
-          className="mb-6 inline-block rounded-lg border border-brand-burgundy/35 bg-brand-black/80 px-6 py-4 backdrop-blur-sm"
+          className="mb-6 flex justify-center"
         >
-          <p className="mb-1 text-[0.55rem] uppercase tracking-[0.28em] text-brand-gold/90">
-            {hero.badge.publication} · {hero.badge.rank} {hero.badge.detail}
-          </p>
-          <p
-            className="text-xl font-light text-brand-cream md:text-2xl"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            {hero.badge.title} {hero.badge.year}
-          </p>
+          <Image
+            src={brand.logo}
+            alt={brand.name}
+            width={280}
+            height={120}
+            priority
+            className="h-auto w-44 md:w-56"
+          />
         </motion.div>
 
         <motion.h1
