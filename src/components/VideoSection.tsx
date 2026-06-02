@@ -48,11 +48,13 @@ export default function VideoSection() {
         viewport={{ once: true, margin: "-80px" }}
         className="relative mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12"
       >
-        <motion.div variants={anim.fadeUp} className="mx-auto mb-10 max-w-3xl text-center md:mb-14">
+        <motion.div variants={anim.fadeUp} className="mx-auto mb-10 text-center md:mb-14">
           <p className={`mb-4 ${typeEyebrow}`}>Whisky Advocate</p>
           <h2 className={`mb-5 ${typeSectionTitle}`}>{video.heading}</h2>
-          <p className="text-base leading-relaxed text-brand-cream/75 md:text-lg md:leading-8">
-            {video.subheading}
+          <p className="mx-auto max-w-3xl px-1 text-base leading-relaxed text-brand-cream/75 sm:px-0 md:text-lg md:leading-8">
+            {video.subheading[0]}
+            <br />
+            {video.subheading[1]}
           </p>
         </motion.div>
 

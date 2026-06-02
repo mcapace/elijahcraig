@@ -33,7 +33,7 @@ export default function BrandStory() {
 
           <motion.p
             variants={anim.fadeUp}
-            className="mb-12 text-center text-base leading-relaxed text-brand-cream/75 md:mb-14 md:leading-8"
+            className="mb-12 text-pretty text-center text-base leading-relaxed text-brand-cream/75 md:mb-14 md:leading-8"
           >
             {brandStory.body}
           </motion.p>

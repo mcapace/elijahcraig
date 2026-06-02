@@ -24,7 +24,7 @@ export default function Footer() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="mx-auto max-w-2xl px-6 text-center md:px-12"
+          className="mx-auto max-w-2xl px-4 text-center sm:px-6 md:px-12"
         >
           <motion.div variants={anim.fadeUp} className="mb-10 flex justify-center">
             <Image
@@ -74,8 +74,8 @@ export default function Footer() {
         </motion.div>
       </Section>
 
-      <div className="border-t border-brand-burgundy/15 bg-brand-charcoal/50">
-        <div className="mx-auto max-w-[1200px] px-6 py-10 md:px-12">
+      <div className="border-t border-brand-burgundy/15 bg-brand-charcoal/50 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))]">
+        <div className="mx-auto max-w-[1200px] px-4 py-10 sm:px-6 md:px-12">
           <div className="mb-8 flex flex-col items-center gap-6">
             <CoBrandLockup size="md" />
             <p className="text-xs tracking-wide text-brand-cream/55">
@@ -85,20 +85,11 @@ export default function Footer() {
 
           <div className="mb-6 h-px bg-gradient-to-r from-transparent via-brand-cream/10 to-transparent" />
 
-          <div className="flex flex-col items-center gap-4 text-center md:flex-row md:justify-between md:text-left">
-            <div className="flex flex-col gap-1">
-              <span className="sponsored-label">Sponsored Content</span>
-              <p className="max-w-xl text-[0.6rem] leading-relaxed tracking-wide text-brand-cream/50">
-                This content was produced in collaboration with {brand.name} and does not reflect
-                the editorial opinion of {publisher.name}.
-              </p>
-            </div>
-            <p className="shrink-0 text-[0.6rem] tracking-wide text-brand-cream/50">
-              &copy; {new Date().getFullYear()} {publisher.parent}. All rights reserved.
-              <br />
-              Please sip responsibly.
-            </p>
-          </div>
+          <p className="text-center text-[0.6rem] leading-relaxed tracking-wide text-brand-cream/50">
+            &copy; {new Date().getFullYear()} {publisher.parent}. All rights reserved.
+            <br />
+            Please sip responsibly.
+          </p>
         </div>
       </div>
     </footer>

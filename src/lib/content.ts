@@ -22,7 +22,7 @@ export const siteConfig = {
   brandStory: {
     heading: "About Elijah Craig",
     lead: "One of the most award-winning families of premium Bourbons and Ryes — now with its inaugural Barrel Proof Rye crowned Whisky Advocate's reigning Whiskey of the Year.",
-    body: "Known as \"The Father of Bourbon,\" Rev. Elijah Craig established his distillery in 1789 on the banks of Elkhorn Creek in Georgetown, Kentucky — pioneering the charred oak barrel aging that defines American whiskey today. Produced by Heaven Hill Distillery with the same hand-selected barrel craftsmanship that began in 1986.",
+    body: "Known as \"The Father of Bourbon,\" Rev. Elijah Craig established his distillery in 1789 on the banks of Elkhorn Creek in Georgetown, Kentucky — pioneering the charred oak barrel aging that defines American whiskey today. Since 1986, Heaven Hill Distillery has carried forward the same hand-selected barrel craftsmanship.",
     highlights: [
       { label: "Whiskey of the Year", value: "2025" },
       { label: "Established", value: "1789" },
@@ -76,7 +76,7 @@ export const siteConfig = {
       "Thanks to the mash bill and long 12-year maturation, A925 is soft, sweet, and inviting — complex without being overwhelming.",
     tastingNotes: [
       { key: "nose", label: "Nose", accentFrom: "#7A303F", accentTo: "#9B3D4F" },
-      { key: "palate", label: "Palate", accentFrom: "#D4A547", accentTo: "#B87333" },
+      { key: "palate", label: "Palate", accentFrom: "#E0A830", accentTo: "#9B5523" },
       { key: "finish", label: "Finish", accentFrom: "#C9A96E", accentTo: "#B87333" },
     ],
     releases: ["January", "May", "September"],
@@ -174,8 +174,10 @@ export const siteConfig = {
   video: {
     enabled: true,
     heading: "Whiskey of the Year",
-    subheading:
-      "David Fleming, Executive Editor, on Elijah Craig Barrel Proof Rye — Whisky Advocate's 2025 Whiskey of the Year",
+    subheading: [
+      "David Fleming, Executive Editor, on Elijah Craig Barrel Proof Rye —",
+      "Whisky Advocate's 2025 Whiskey of the Year",
+    ],
     mediaId: "FsApcH5G",
     playerId: "w6TeWEoR",
     embedUrl: "",

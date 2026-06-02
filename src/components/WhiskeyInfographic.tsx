@@ -72,7 +72,11 @@ function BatchCircle({
       className="relative z-10 mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-brand-gold/40 bg-brand-black ring-[5px] ring-brand-black sm:h-[4.5rem] sm:w-[4.5rem] sm:ring-[6px] md:h-20 md:w-20 md:ring-8"
     >
       <div className="absolute inset-0 rounded-full bg-brand-burgundy/25" />
-      <span className="relative font-[family-name:var(--font-display)] text-3xl font-medium text-brand-gold sm:text-4xl md:text-5xl">
+      <span
+        className={`relative inline-flex items-center justify-center font-[family-name:var(--font-display)] text-3xl font-medium leading-none tabular-nums text-brand-gold sm:text-4xl md:text-5xl ${
+          symbol !== "A" ? "-translate-y-[0.07em] sm:-translate-y-[0.08em]" : ""
+        }`}
+      >
         {symbol}
       </span>
     </motion.div>
@@ -274,14 +278,14 @@ export default function WhiskeyInfographic() {
         >
           <div className="mb-8">
             <p className={`mb-2 ${typeInfographicTitle}`}>The Mash Bill</p>
-            <p className="max-w-xl text-sm leading-relaxed text-brand-cream/72 md:text-base">
+            <p className="text-pretty text-sm leading-relaxed text-brand-cream/72 md:text-base lg:whitespace-nowrap">
               {infographic.mashBillNote}
             </p>
           </div>
 
           <MashBillStack items={infographic.mashBill} delay={0.1} />
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
             {infographic.mashBill.map((item, i) => (
               <motion.div
                 key={item.grain}
@@ -289,11 +293,11 @@ export default function WhiskeyInfographic() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={viewport}
                 transition={{ delay: reduced ? 0 : 0.5 + i * 0.12, duration: 0.45 }}
-                className="flex items-center justify-between gap-3 sm:flex-col sm:items-start"
+                className="flex flex-col items-center gap-1 text-center"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <motion.span
-                    className="h-2.5 w-2.5 rounded-full"
+                    className="h-2.5 w-2.5 shrink-0 rounded-full"
                     style={{ backgroundColor: item.color }}
                     initial={{ scale: reduced ? 1 : 0 }}
                     whileInView={{ scale: 1 }}
@@ -314,7 +318,7 @@ export default function WhiskeyInfographic() {
           <div className="mb-10 text-center md:mb-12">
             <p className={`mb-3 ${typeEyebrow}`}>{infographic.flavorSubheading}</p>
             <p className={typeInfographicTitle}>{infographic.flavorHeading}</p>
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-brand-cream/72 md:text-base md:leading-7">
+            <p className="mx-auto mt-5 text-pretty text-sm leading-relaxed text-brand-cream/72 md:text-base md:leading-7 lg:whitespace-nowrap">
               {infographic.flavorIntro}
             </p>
           </div>
@@ -330,16 +334,12 @@ export default function WhiskeyInfographic() {
                 whileHover={reduced ? undefined : { y: -4 }}
                 className="overflow-hidden rounded-sm border border-brand-cream/10 bg-brand-black/55 transition-colors hover:border-brand-burgundy/25"
               >
-                <motion.div
-                  className="h-1 w-full"
-                  initial={{ scaleX: reduced ? 1 : 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true, amount: 0.01 }}
-                  transition={{ delay: reduced ? 0 : 0.1 + i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                <div
+                  className="h-1.5 w-full shrink-0"
                   style={{
-                    transformOrigin: "left center",
                     background: `linear-gradient(to right, ${note.accentFrom}, ${note.accentTo})`,
                   }}
+                  aria-hidden
                 />
                 <div className="p-6 md:p-7">
                   <p className={`mb-3 ${typeEyebrowLight}`}>{note.label}</p>
