@@ -36,7 +36,7 @@ export default function Accolades() {
             >
               <p
                 className="mb-2 text-xl font-light text-brand-gold md:text-2xl"
-                style={{ fontFamily: "var(--font-playfair)" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {accolade.quote}
               </p>

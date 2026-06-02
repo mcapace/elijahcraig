@@ -54,7 +54,7 @@ export default function Timeline() {
                 >
                   <span
                     className="text-xl font-light text-brand-gold md:text-2xl"
-                    style={{ fontFamily: "var(--font-playfair)" }}
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {milestone.year}
                   </span>

@@ -19,13 +19,13 @@ export default function Home() {
       <StickyNav />
       <main id="main-content" tabIndex={-1}>
         <Hero />
+        <VideoSection />
         <BrandStory />
         <WhiskeyInfographic />
         <ProductFeature />
         <Timeline />
         <Accolades />
         <PressQuotes />
-        <VideoSection />
       </main>
       <Footer />
     </>

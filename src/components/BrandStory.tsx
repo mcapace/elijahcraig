@@ -26,7 +26,7 @@ export default function BrandStory() {
           <motion.p
             variants={anim.fadeUp}
             className="mb-6 text-center text-lg leading-relaxed text-brand-cream md:text-xl"
-            style={{ fontFamily: "var(--font-playfair)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {brandStory.lead}
           </motion.p>

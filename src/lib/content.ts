@@ -31,18 +31,47 @@ export const siteConfig = {
     ],
   },
   infographic: {
-    heading: "Barrel Proof Rye at a Glance",
-    subheading: "Everything you need to know about Batch A925",
+    heading: "Batch A925",
+    subheading: "The Inaugural Barrel Proof Rye",
+    intro:
+      "Elijah Craig Barrel Proof Batch A925 is the inaugural release of Elijah Craig's Barrel Proof Rye — the first barrel proof Kentucky straight rye in the portfolio, bottled uncut and non-chill filtered to preserve every note of flavor and natural cask character.",
+    batchNote:
+      "The name uses Elijah Craig's signature batching code: \"A\" indicates the first of three yearly releases, \"9\" denotes the release month (September), and \"25\" specifies the year (2025).",
     batchDecode: {
-      letter: { symbol: "A", meaning: "1st release of the year" },
-      month: { symbol: "9", meaning: "September" },
-      year: { symbol: "25", meaning: "2025" },
+      letter: { symbol: "A", title: "Release", meaning: "First of three yearly releases" },
+      month: { symbol: "9", title: "Month", meaning: "September" },
+      year: { symbol: "25", title: "Year", meaning: "2025" },
     },
-    mashBill: [
-      { grain: "Rye", percent: 51 },
-      { grain: "Corn", percent: 35 },
-      { grain: "Malted Barley", percent: 14 },
+    process: [
+      {
+        step: "01",
+        title: "The Recipe",
+        body: "Elijah Craig's \"barely legal\" rye mash bill — 51% rye, 35% corn, and 14% malted barley.",
+      },
+      {
+        step: "02",
+        title: "Aging",
+        body: "Exactly 12 years and 3 months in charred oak barrels before hand selection.",
+      },
+      {
+        step: "03",
+        title: "Bottling",
+        body: "Pulled straight from the barrel — uncut and non-chill filtered to preserve natural cask oils.",
+      },
+      {
+        step: "04",
+        title: "Proof",
+        body: "Bottled at 108 proof (54% ABV), full strength and unadulterated.",
+      },
     ],
+    mashBill: [
+      { grain: "Rye", percent: 51, color: "#7A303F" },
+      { grain: "Corn", percent: 35, color: "#D4A547" },
+      { grain: "Malted Barley", percent: 14, color: "#C9A96E" },
+    ],
+    mashBillNote: "A high-corn rye recipe that leans remarkably sweet — approachable for a barrel proof rye.",
+    flavorIntro:
+      "Thanks to the mash bill and long 12-year maturation, A925 is soft, sweet, and inviting — complex without overwhelming the palate.",
     releases: ["January", "May", "September"],
   },
   product: {
@@ -52,18 +81,18 @@ export const siteConfig = {
     batch: "Batch A925",
     tagline: "The First-Ever Barrel Proof Kentucky Straight Rye Whiskey",
     description:
-      "The first barrel proof Kentucky straight rye in the Elijah Craig portfolio — bottled uncut and non-chill filtered at 108 proof after 12 years in charred oak.",
+      "The inaugural Barrel Proof Rye from Elijah Craig — uncut, non-chill filtered, and bottled at full cask strength after 12 years and 3 months in charred oak.",
     stats: [
-      { label: "Age", value: "12 Yrs, 3 Mo" },
       { label: "Proof", value: "108" },
-      { label: "Size", value: "750 ml" },
-      { label: "SRP", value: "$74.99" },
+      { label: "Age", value: "12 Yrs, 3 Mo" },
+      { label: "ABV", value: "54%" },
+      { label: "Batch", value: "A925" },
     ],
     mashBill: "51% Rye · 35% Corn · 14% Malted Barley",
     tastingNotes: {
-      nose: "Baking spices, gingerbread, and a sweet note of molasses",
-      palate: "Stewed fruits and touches of cinnamon — complex and well-balanced",
-      finish: "Lingering nutmeg and a generous burst of rye spice",
+      nose: "Soft and buttery, with brown sugar, vanilla, and sweet old oak.",
+      palate: "Honey, toasted sugar, and baking spices over subtle white pepper and rye spice.",
+      finish: "Long, warm, and lingering — sweet oak and baking spice in balance.",
     },
     body: "Rich, deep copper-hued liquid with a warm, satisfying close",
     imageSrc: "/assets/products/barrel-proof-rye-bottle.png",
@@ -144,13 +173,6 @@ export const siteConfig = {
     playerId: "w6TeWEoR",
     embedUrl: "",
     iframeTitle: "Elijah Craig Barrel Proof Rye — Whisky Advocate Whiskey of the Year",
-    social: {
-      enabled: true,
-      eyebrow: "Social Cut",
-      heading: "Barrel Proof Rye Takes the Top Spot",
-      src: "/assets/video/social-promo.mp4",
-      posterSrc: "/assets/video/social-promo-poster.jpg",
-    },
   },
   cta: {
     heading: "Experience Barrel Proof Rye",
