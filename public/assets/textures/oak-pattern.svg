@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Wood grain base texture -->
+    <filter id="wood-grain" x="0%" y="0%" width="100%" height="100%">
+      <!-- Primary grain lines -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.2" numOctaves="6" seed="15" stitchTiles="stitch" result="woodBase"/>
+      <!-- Stretch horizontally for wood-like effect -->
+      <feColorMatrix type="saturate" values="0" in="woodBase" result="monoWood"/>
+      <feComponentTransfer in="monoWood" result="woodLines">
+        <feFuncR type="linear" slope="0.8" intercept="0.1"/>
+        <feFuncG type="linear" slope="0.7" intercept="0.08"/>
+        <feFuncB type="linear" slope="0.5" intercept="0.04"/>
+        <feFuncA type="linear" slope="0.08" intercept="0"/>
+      </feComponentTransfer>
+    </filter>
+
+    <!-- Subtle knot variation -->
+    <filter id="wood-knots" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="turbulence" baseFrequency="0.008 0.04" numOctaves="3" seed="8" stitchTiles="stitch" result="knotBase"/>
+      <feColorMatrix type="saturate" values="0" in="knotBase" result="monoKnot"/>
+      <feComponentTransfer in="monoKnot" result="knots">
+        <feFuncR type="linear" slope="0.6" intercept="0.15"/>
+        <feFuncG type="linear" slope="0.5" intercept="0.1"/>
+        <feFuncB type="linear" slope="0.3" intercept="0.05"/>
+        <feFuncA type="linear" slope="0.04" intercept="0"/>
+      </feComponentTransfer>
+    </filter>
+
+    <!-- Fine detail grain -->
+    <filter id="fine-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04 0.5" numOctaves="4" seed="22" stitchTiles="stitch" result="fineBase"/>
+      <feColorMatrix type="saturate" values="0" in="fineBase" result="monoFine"/>
+      <feComponentTransfer in="monoFine" result="fineLines">
+        <feFuncR type="linear" slope="0.5" intercept="0.1"/>
+        <feFuncG type="linear" slope="0.4" intercept="0.08"/>
+        <feFuncB type="linear" slope="0.25" intercept="0.04"/>
+        <feFuncA type="linear" slope="0.05" intercept="0"/>
+      </feComponentTransfer>
+    </filter>
+
+    <!-- Amber color overlay -->
+    <linearGradient id="amber-wash" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.02"/>
+      <stop offset="50%" stop-color="#8B7355" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#C9A96E" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Transparent base -->
+  <rect width="400" height="400" fill="transparent"/>
+
+  <!-- Layered wood grain textures in amber tones -->
+  <!-- Primary grain -->
+  <rect width="400" height="400" filter="url(#wood-grain)" fill="transparent"/>
+
+  <!-- Knot patterns -->
+  <rect width="400" height="400" filter="url(#wood-knots)" fill="transparent"/>
+
+  <!-- Fine detail -->
+  <rect width="400" height="400" filter="url(#fine-grain)" fill="transparent"/>
+
+  <!-- Very subtle hand-drawn grain accent lines -->
+  <g stroke="#C9A96E" fill="none" opacity="0.04" stroke-width="0.5">
+    <!-- Horizontal wavy grain lines at various positions -->
+    <path d="M0,40 Q50,38 100,41 T200,39 T300,42 T400,40"/>
+    <path d="M0,42 Q50,40 100,43 T200,41 T300,44 T400,42"/>
+    <path d="M0,95 Q60,92 120,96 T240,93 T360,97 T400,95"/>
+    <path d="M0,97 Q60,94 120,98 T240,95 T360,99 T400,97"/>
+    <path d="M0,150 Q70,147 140,152 T280,148 T400,151"/>
+    <path d="M0,152 Q70,149 140,154 T280,150 T400,153"/>
+    <path d="M0,210 Q55,207 110,212 T220,208 T330,213 T400,210"/>
+    <path d="M0,212 Q55,209 110,214 T220,210 T330,215 T400,212"/>
+    <path d="M0,268 Q65,265 130,270 T260,266 T390,271 T400,268"/>
+    <path d="M0,270 Q65,267 130,272 T260,268 T390,273 T400,270"/>
+    <path d="M0,330 Q45,327 90,332 T180,328 T270,333 T360,329 T400,331"/>
+    <path d="M0,332 Q45,329 90,334 T180,330 T270,335 T360,331 T400,333"/>
+    <path d="M0,385 Q60,382 120,387 T240,383 T360,388 T400,385"/>
+    <path d="M0,387 Q60,384 120,389 T240,385 T360,390 T400,387"/>
+  </g>
+
+  <!-- Amber color wash -->
+  <rect width="400" height="400" fill="url(#amber-wash)"/>
+</svg>
