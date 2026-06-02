@@ -136,12 +136,21 @@ export const siteConfig = {
     ],
   },
   video: {
-    enabled: false,
+    enabled: true,
     heading: "Whiskey of the Year",
-    subheading: "Watch the story behind Elijah Craig Barrel Proof Rye's 2025 win",
-    vimeoId: "",
-    posterSrc: "/assets/hero/barrel-proof-rye-hero-desktop.jpg",
+    subheading:
+      "David Fleming, Executive Editor, on Elijah Craig Barrel Proof Rye — Whisky Advocate's 2025 Whiskey of the Year",
+    mediaId: "FsApcH5G",
+    playerId: "w6TeWEoR",
+    embedUrl: "",
     iframeTitle: "Elijah Craig Barrel Proof Rye — Whisky Advocate Whiskey of the Year",
+    social: {
+      enabled: true,
+      eyebrow: "Social Cut",
+      heading: "Barrel Proof Rye Takes the Top Spot",
+      src: "/assets/video/social-promo.mp4",
+      posterSrc: "/assets/video/social-promo-poster.jpg",
+    },
   },
   cta: {
     heading: "Experience Barrel Proof Rye",

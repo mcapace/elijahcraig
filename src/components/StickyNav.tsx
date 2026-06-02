@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { id: "barrel-proof-rye", label: "The Rye" },
   { id: "heritage", label: "Legacy" },
   { id: "accolades", label: "Awards" },
+  { id: "video", label: "Watch" },
 ] as const;
 
 export default function StickyNav() {

@@ -1,71 +1,35 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
 import Section from "./Section";
 import { siteConfig } from "@/lib/content";
 import { useScrollAnimationVariants } from "@/hooks/useScrollAnimationVariants";
+import { typeEyebrow, typeSectionTitle } from "@/lib/typography";
 
-function VideoPlayer({
-  vimeoId,
-  title,
-  iframeTitle,
-  posterSrc,
-}: {
-  vimeoId: string;
-  title: string;
-  iframeTitle: string;
-  posterSrc: string;
-}) {
-  const [playing, setPlaying] = useState(false);
-  const reduceMotion = useReducedMotion();
+function resolveJwEmbedSrc(): string | null {
+  const { video } = siteConfig;
 
-  const iframeSrc = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&badge=0`;
+  if (video.embedUrl?.trim()) {
+    return video.embedUrl.trim();
+  }
 
+  const playerId =
+    video.playerId?.trim() || process.env.NEXT_PUBLIC_JW_PLAYER_ID?.trim() || "";
+
+  if (video.mediaId && playerId) {
+    return `https://cdn.jwplayer.com/players/${video.mediaId}-${playerId}.html`;
+  }
+
+  return null;
+}
+
+function VideoFrame({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <div className="relative aspect-video w-full overflow-hidden bg-brand-charcoal">
-      {playing ? (
-        <iframe
-          src={iframeSrc}
-          className="absolute inset-0 h-full w-full border-0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-          title={iframeTitle}
-        />
-      ) : (
-        <button
-          type="button"
-          onClick={() => setPlaying(true)}
-          className="group relative block h-full w-full"
-          aria-label={`Play ${title}`}
-        >
-          <Image
-            src={posterSrc}
-            alt={title}
-            fill
-            sizes="(max-width: 768px) 100vw, 900px"
-            className={
-              reduceMotion
-                ? "object-cover"
-                : "object-cover transition-transform duration-700 group-hover:scale-105"
-            }
-          />
-          <div className="absolute inset-0 bg-brand-black/40 transition-colors group-hover:bg-brand-black/30" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-brand-cream/30 bg-brand-black/50 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-brand-burgundy/50 md:h-20 md:w-20">
-              <svg
-                className="ml-1 h-6 w-6 text-brand-cream transition-colors group-hover:text-brand-gold md:h-7 md:w-7"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
-        </button>
-      )}
+    <div
+      className={`overflow-hidden rounded-sm border border-brand-cream/[0.07] bg-brand-black/50 shadow-[0_24px_80px_rgba(0,0,0,0.45)] ${className}`}
+    >
+      {children}
     </div>
   );
 }
@@ -73,36 +37,92 @@ function VideoPlayer({
 export default function VideoSection() {
   const { video } = siteConfig;
   const anim = useScrollAnimationVariants();
+  const embedSrc = resolveJwEmbedSrc();
+  const showFeature = video.enabled && !!embedSrc;
+  const showSocial = video.social.enabled && !!video.social.src;
 
-  if (!video.enabled || !video.vimeoId) return null;
+  if (!showFeature && !showSocial) return null;
 
   return (
-    <Section id="video" fullBleed className="py-24 md:py-36">
+    <Section
+      id="video"
+      fullBleed
+      className="border-y border-brand-burgundy/10 bg-brand-charcoal/25 py-20 md:py-28"
+    >
       <motion.div
         variants={anim.staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="mx-auto max-w-[900px] px-6 md:px-12"
+        viewport={{ once: true, margin: "-80px" }}
+        className="mx-auto max-w-[1100px] px-6 md:px-12"
       >
-        <motion.div variants={anim.fadeUp} className="mb-12 text-center">
-          <h2
-            className="mb-4 text-3xl font-light tracking-wide text-brand-cream md:text-4xl"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            {video.heading}
-          </h2>
-          <p className="text-sm tracking-wide text-brand-cream/75">{video.subheading}</p>
+        <motion.div variants={anim.fadeUp} className="mb-10 text-center md:mb-12">
+          <p className={`mb-3 ${typeEyebrow}`}>Whisky Advocate</p>
+          <h2 className={`mb-4 ${typeSectionTitle}`}>{video.heading}</h2>
+          {showFeature && (
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-brand-cream/75 md:text-lg">
+              {video.subheading}
+            </p>
+          )}
         </motion.div>
 
-        <motion.div variants={anim.fadeUp}>
-          <VideoPlayer
-            vimeoId={video.vimeoId}
-            title={video.heading}
-            iframeTitle={video.iframeTitle}
-            posterSrc={video.posterSrc}
-          />
-        </motion.div>
+        <div
+          className={`grid gap-10 ${
+            showFeature && showSocial
+              ? "lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start lg:gap-12"
+              : "mx-auto max-w-[960px]"
+          }`}
+        >
+          {showFeature && (
+            <motion.div variants={anim.fadeUp}>
+              <VideoFrame>
+                <div className="relative aspect-video w-full">
+                  <iframe
+                    src={embedSrc}
+                    title={video.iframeTitle}
+                    className="absolute inset-0 h-full w-full border-0"
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
+              </VideoFrame>
+            </motion.div>
+          )}
+
+          {showSocial && (
+            <motion.div
+              variants={anim.fadeUp}
+              className={showFeature ? "mx-auto w-full max-w-[280px] lg:mx-0" : "mx-auto w-full max-w-[280px]"}
+            >
+              <div className="mb-4 text-center lg:text-left">
+                <p className="mb-2 text-[0.65rem] uppercase tracking-[0.24em] text-brand-gold">
+                  {video.social.eyebrow}
+                </p>
+                <p
+                  className="text-lg font-light leading-snug text-brand-cream md:text-xl"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  {video.social.heading}
+                </p>
+              </div>
+              <VideoFrame>
+                <div className="relative aspect-[9/16] w-full bg-brand-black">
+                  <video
+                    className="absolute inset-0 h-full w-full object-cover"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={video.social.posterSrc}
+                    aria-label={video.social.heading}
+                  >
+                    <source src={video.social.src} type="video/mp4" />
+                  </video>
+                </div>
+              </VideoFrame>
+            </motion.div>
+          )}
+        </div>
       </motion.div>
     </Section>
   );
