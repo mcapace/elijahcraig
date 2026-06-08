@@ -46,7 +46,7 @@ export const siteConfig = {
       {
         step: "01",
         title: "The Recipe",
-        body: "Elijah Craig's \"barely legal\" rye mash bill — 51% rye, 35% corn, and 14% malted barley.",
+        body: "Elijah Craig's rye mash bill — 51% rye, 35% corn, and 14% malted barley.",
       },
       {
         step: "02",
@@ -138,7 +138,7 @@ export const siteConfig = {
     {
       quote: "#1 Top 20",
       source: "Whisky Advocate",
-      detail: "Whiskey of the Year 2025",
+      detail: "Whiskey of the Year 2025 · Barrel Proof Rye A925",
     },
     {
       quote: "First Rye Whiskey of the Year",
@@ -146,18 +146,23 @@ export const siteConfig = {
       detail: "Historic category first",
     },
     {
-      quote: "Best Small Batch",
-      source: "SF World Spirits Competition",
-      detail: "Elijah Craig family",
+      quote: "Best Small Batch Bourbon",
+      source: "San Francisco World Spirits Competition",
+      detail: "Elijah Craig Small Batch",
     },
     {
-      quote: "Best Single Barrel",
-      source: "SF World Spirits Competition",
-      detail: "Aged 11+ years",
+      quote: "Best Single Barrel Bourbon",
+      source: "San Francisco World Spirits Competition",
+      detail: "Elijah Craig Single Barrel · Aged 11+ years",
+    },
+    {
+      quote: "Best Straight Bourbon",
+      source: "San Francisco World Spirits Competition",
+      detail: "Elijah Craig Bourbon",
     },
   ],
   press: {
-    heading: "Recognition at the Highest Level",
+    heading: "Recognition and Acclaim",
     intro:
       "Elijah Craig Barrel Proof Rye has been named Whisky Advocate's 2025 Whiskey of the Year, topping the publication's coveted Top 20 list — the first time a rye whiskey has earned the highest honor.",
     quotes: [

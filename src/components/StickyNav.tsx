@@ -10,8 +10,8 @@ import { typeButtonPrimary } from "@/lib/typography";
 const NAV_LINKS = [
   { id: "video", label: "Watch" },
   { id: "brand-story", label: "Story" },
-  { id: "at-a-glance", label: "At a Glance" },
   { id: "barrel-proof-rye", label: "The Rye" },
+  { id: "batch-a925", label: "Batch A925" },
   { id: "heritage", label: "Legacy" },
   { id: "accolades", label: "Awards" },
 ] as const;

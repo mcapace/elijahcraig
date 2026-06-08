@@ -19,7 +19,7 @@ function HeroBackground({
   animate: boolean;
 }) {
   const imgClass =
-    "pointer-events-none h-full w-full max-w-none select-none object-cover object-[center_38%]";
+    "pointer-events-none h-full w-full max-w-none select-none object-cover object-[28%_40%]";
 
   const imgStyle: CSSProperties = { width: "100%", height: "100%", maxWidth: "none" };
 
@@ -44,7 +44,7 @@ function HeroBackground({
         )}
       </div>
       <div className="absolute inset-0 z-0 overflow-hidden bg-brand-black md:hidden">
-        <img src={mobileSrc} alt={alt} className={`${imgClass} object-[center_35%]`} style={imgStyle} />
+        <img src={mobileSrc} alt={alt} className={`${imgClass} object-[22%_38%]`} style={imgStyle} />
       </div>
     </>
   );
@@ -57,7 +57,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className={`film-grain relative flex min-h-[88svh] flex-col items-center justify-end overflow-hidden ${HEADER_PAD} pb-16 md:justify-center`}
+      className={`film-grain relative flex min-h-[88svh] flex-col items-center justify-end overflow-hidden ${HEADER_PAD} pb-10 md:justify-center md:pb-16`}
     >
       <HeroBackground
         desktopSrc={hero.imageSrc}
@@ -116,7 +116,7 @@ export default function Hero() {
           </a>
           <button
             type="button"
-            onClick={() => document.getElementById("at-a-glance")?.scrollIntoView({ block: "start" })}
+            onClick={() => document.getElementById("barrel-proof-rye")?.scrollIntoView({ block: "start" })}
             className={`${typeButtonSecondary} w-full sm:w-auto`}
           >
             See the Rye

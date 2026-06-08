@@ -40,16 +40,16 @@ export default function BrandStory() {
         </div>
 
         <motion.div variants={anim.fadeUp} className="mx-auto max-w-[960px]">
-          <div className="grid grid-cols-2 gap-px overflow-hidden border border-brand-burgundy/20 bg-brand-burgundy/20 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-brand-cream/10 ring-1 ring-brand-cream/10 sm:grid-cols-4">
             {brandStory.highlights.map((item) => (
               <div
                 key={item.label}
-                className="flex min-h-[5.5rem] flex-col items-center justify-center bg-brand-black/60 px-4 py-6 text-center sm:min-h-[6.25rem] sm:px-6 sm:py-7 md:min-h-[7rem] md:py-8"
+                className="flex flex-col items-center justify-center bg-brand-black/75 px-4 py-7 text-center sm:py-8"
               >
-                <p className="mb-2 text-[0.65rem] uppercase tracking-[0.2em] text-brand-cream/60 sm:text-xs md:mb-2.5 md:text-sm">
+                <p className="mb-2 font-[family-name:var(--font-body)] text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-brand-cream/55">
                   {item.label}
                 </p>
-                <p className="text-lg font-medium leading-tight text-brand-gold sm:text-xl md:text-2xl">
+                <p className="font-[family-name:var(--font-display)] text-2xl font-medium text-brand-gold sm:text-3xl md:text-4xl">
                   {item.value}
                 </p>
               </div>

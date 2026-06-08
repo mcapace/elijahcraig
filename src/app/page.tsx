@@ -4,11 +4,10 @@ import LoadingScreen from "@/components/LoadingScreen";
 import StickyNav from "@/components/StickyNav";
 import Hero from "@/components/Hero";
 import BrandStory from "@/components/BrandStory";
-import WhiskeyInfographic from "@/components/WhiskeyInfographic";
+import InfographicSection from "@/components/InfographicSection";
 import ProductFeature from "@/components/ProductFeature";
 import Timeline from "@/components/Timeline";
 import Accolades from "@/components/Accolades";
-import PressQuotes from "@/components/PressQuotes";
 import VideoSection from "@/components/VideoSection";
 import Footer from "@/components/Footer";
 
@@ -21,11 +20,13 @@ export default function Home() {
         <Hero />
         <VideoSection />
         <BrandStory />
-        <WhiskeyInfographic />
         <ProductFeature />
-        <Timeline />
+        <InfographicSection block="process" />
+        <InfographicSection block="mashbill" />
+        <InfographicSection block="flavor" />
+        <InfographicSection block="batch" />
         <Accolades />
-        <PressQuotes />
+        <Timeline />
       </main>
       <Footer />
     </>

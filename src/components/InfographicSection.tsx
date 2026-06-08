@@ -8,6 +8,8 @@ import { typeEyebrow, typeEyebrowLight, typeSectionTitle, typeInfographicTitle }
 
 const viewport = { once: true, amount: 0.25 as const };
 
+export type InfographicBlock = "process" | "mashbill" | "flavor" | "batch";
+
 function MashBillStack({
   items,
   delay,
@@ -48,13 +50,7 @@ function MashBillStack({
   );
 }
 
-function BatchCircle({
-  symbol,
-  index,
-}: {
-  symbol: string;
-  index: number;
-}) {
+function BatchCircle({ symbol, index }: { symbol: string; index: number }) {
   const reduced = useReducedMotion();
 
   return (
@@ -83,7 +79,11 @@ function BatchCircle({
   );
 }
 
-export default function WhiskeyInfographic() {
+type InfographicSectionProps = {
+  block: InfographicBlock;
+};
+
+export default function InfographicSection({ block }: InfographicSectionProps) {
   const { infographic, product } = siteConfig;
   const anim = useScrollAnimationVariants();
   const reduced = useReducedMotion();
@@ -94,11 +94,178 @@ export default function WhiskeyInfographic() {
     { key: "year", ...infographic.batchDecode.year },
   ];
 
+  if (block === "process") {
+    return (
+      <Section id="from-barrel-to-bottle" className="py-16 md:py-24">
+        <motion.div
+          variants={anim.staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12"
+        >
+          <motion.div variants={anim.fadeUp}>
+            <p className={`mb-8 text-center ${typeInfographicTitle}`}>From Barrel to Bottle</p>
+
+            <div className="relative hidden lg:block">
+              <motion.div
+                className="absolute top-8 right-[12%] left-[12%] h-px origin-left bg-gradient-to-r from-brand-burgundy/40 via-brand-gold/35 to-brand-burgundy/40"
+                initial={{ scaleX: reduced ? 1 : 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={viewport}
+                transition={{ duration: reduced ? 0 : 1.2, ease: [0.22, 1, 0.36, 1] }}
+                aria-hidden
+              />
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {infographic.process.map((step, i) => (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewport}
+                  transition={{ delay: reduced ? 0 : 0.12 + i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={reduced ? undefined : { y: -6, transition: { duration: 0.25 } }}
+                  className="group relative overflow-hidden rounded-sm border border-brand-cream/10 bg-brand-black/55 p-6 transition-colors hover:border-brand-burgundy/35 hover:bg-brand-black/70"
+                >
+                  <motion.span
+                    initial={{ opacity: reduced ? 1 : 0, x: reduced ? 0 : -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={viewport}
+                    transition={{ delay: reduced ? 0 : 0.2 + i * 0.12, duration: 0.45 }}
+                    className="mb-4 block font-[family-name:var(--font-display)] text-4xl font-medium text-brand-burgundy/40 transition-colors group-hover:text-brand-gold/55"
+                  >
+                    {step.step}
+                  </motion.span>
+                  <h3 className="mb-3 font-[family-name:var(--font-display)] text-xl font-medium text-brand-gold">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-brand-cream/75 md:text-[0.95rem] md:leading-7">
+                    {step.body}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      </Section>
+    );
+  }
+
+  if (block === "mashbill") {
+    return (
+      <Section id="mash-bill" fullBleed className="border-y border-brand-burgundy/10 bg-brand-charcoal/30 py-16 md:py-24">
+        <motion.div
+          variants={anim.staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12"
+        >
+          <motion.div
+            variants={anim.fadeUp}
+            className="rounded-sm border border-brand-cream/10 bg-brand-black/50 p-5 sm:p-6 md:p-10"
+          >
+            <div className="mb-8">
+              <p className={`mb-2 ${typeInfographicTitle}`}>The Mash Bill</p>
+              <p className="text-pretty text-sm leading-relaxed text-brand-cream/72 md:text-base lg:whitespace-nowrap">
+                {infographic.mashBillNote}
+              </p>
+            </div>
+
+            <MashBillStack items={infographic.mashBill} delay={0.1} />
+
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+              {infographic.mashBill.map((item, i) => (
+                <motion.div
+                  key={item.grain}
+                  initial={{ opacity: reduced ? 1 : 0, x: reduced ? 0 : -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={viewport}
+                  transition={{ delay: reduced ? 0 : 0.5 + i * 0.12, duration: 0.45 }}
+                  className="flex flex-col items-center gap-1 text-center"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <motion.span
+                      className="h-2.5 w-2.5 shrink-0 rounded-full"
+                      style={{ backgroundColor: item.color }}
+                      initial={{ scale: reduced ? 1 : 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={viewport}
+                      transition={{ delay: reduced ? 0 : 0.55 + i * 0.12, type: "spring", stiffness: 400, damping: 15 }}
+                    />
+                    <span className="font-[family-name:var(--font-body)] text-sm text-brand-cream/85">{item.grain}</span>
+                  </div>
+                  <span className="font-[family-name:var(--font-display)] text-xl font-medium text-brand-gold">
+                    {item.percent}%
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      </Section>
+    );
+  }
+
+  if (block === "flavor") {
+    return (
+      <Section id="flavor-profile" className="py-16 md:py-24">
+        <motion.div
+          variants={anim.staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12"
+        >
+          <motion.div variants={anim.fadeUp}>
+            <div className="mb-10 text-center md:mb-12">
+              <p className={`mb-3 ${typeEyebrow}`}>{infographic.flavorSubheading}</p>
+              <p className={typeInfographicTitle}>{infographic.flavorHeading}</p>
+              <p className="mx-auto mt-5 text-pretty text-sm leading-relaxed text-brand-cream/72 md:text-base md:leading-7 lg:whitespace-nowrap">
+                {infographic.flavorIntro}
+              </p>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-3">
+              {infographic.tastingNotes.map((note, i) => (
+                <motion.div
+                  key={note.key}
+                  initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewport}
+                  transition={{ delay: reduced ? 0 : i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={reduced ? undefined : { y: -4 }}
+                  className="overflow-hidden rounded-sm border border-brand-cream/10 bg-brand-black/55 transition-colors hover:border-brand-burgundy/25"
+                >
+                  <div
+                    className="h-1.5 w-full shrink-0"
+                    style={{
+                      background: `linear-gradient(to right, ${note.accentFrom}, ${note.accentTo})`,
+                    }}
+                    aria-hidden
+                  />
+                  <div className="p-6 md:p-7">
+                    <p className={`mb-3 ${typeEyebrowLight}`}>{note.label}</p>
+                    <p className="text-sm leading-relaxed text-brand-cream/82 md:text-base md:leading-7">
+                      {product.tastingNotes[note.key as keyof typeof product.tastingNotes]}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      </Section>
+    );
+  }
+
   return (
     <Section
-      id="at-a-glance"
+      id="batch-a925"
       fullBleed
-      className="relative overflow-hidden border-y border-brand-burgundy/15 bg-brand-charcoal/40 py-16 md:py-28"
+      className="relative overflow-hidden border-y border-brand-burgundy/15 bg-brand-charcoal/40 py-16 md:py-24"
     >
       <div
         className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-brand-burgundy/8 blur-[100px]"
@@ -116,7 +283,7 @@ export default function WhiskeyInfographic() {
         viewport={{ once: true, margin: "-60px" }}
         className="relative mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12"
       >
-        <motion.div variants={anim.fadeUp} className="mb-12 text-center md:mb-16">
+        <motion.div variants={anim.fadeUp} className="mb-12 text-center md:mb-14">
           <p className={`mb-3 ${typeEyebrow}`}>{infographic.subheading}</p>
           <h2 className={typeSectionTitle}>{infographic.heading}</h2>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-brand-cream/78 md:text-lg md:leading-8">
@@ -126,7 +293,7 @@ export default function WhiskeyInfographic() {
 
         <motion.div
           variants={anim.fadeUp}
-          className="mb-14 grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-brand-cream/10 ring-1 ring-brand-cream/10 md:mb-16 md:grid-cols-4"
+          className="mb-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-brand-cream/10 ring-1 ring-brand-cream/10 md:mb-14 md:grid-cols-4"
         >
           {product.stats.map((stat, i) => (
             <motion.div
@@ -153,7 +320,7 @@ export default function WhiskeyInfographic() {
           ))}
         </motion.div>
 
-        <motion.div variants={anim.fadeUp} className="mb-14 md:mb-16">
+        <motion.div variants={anim.fadeUp}>
           <div className="mb-8 text-center md:mb-10">
             <p className={`mb-4 ${typeInfographicTitle}`}>Crack the Code</p>
             <p className="mx-auto max-w-2xl text-sm leading-relaxed text-brand-cream/72 md:text-base md:leading-7">
@@ -214,141 +381,6 @@ export default function WhiskeyInfographic() {
                 ))}
               </div>
             </div>
-
-            <motion.p
-              initial={{ opacity: reduced ? 1 : 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={viewport}
-              transition={{ delay: reduced ? 0 : 0.8, duration: 0.5 }}
-              className="relative mt-6 text-center font-[family-name:var(--font-body)] text-[0.65rem] leading-relaxed tracking-wide text-brand-cream/45 sm:text-xs md:mt-10"
-            >
-              New batches every {infographic.releases.join(" · ")}
-            </motion.p>
-          </div>
-        </motion.div>
-
-        <motion.div variants={anim.fadeUp} className="mb-14 md:mb-16">
-          <p className={`mb-8 text-center ${typeInfographicTitle}`}>From Barrel to Bottle</p>
-
-          <div className="relative hidden lg:block">
-            <motion.div
-              className="absolute top-8 right-[12%] left-[12%] h-px origin-left bg-gradient-to-r from-brand-burgundy/40 via-brand-gold/35 to-brand-burgundy/40"
-              initial={{ scaleX: reduced ? 1 : 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={viewport}
-              transition={{ duration: reduced ? 0 : 1.2, ease: [0.22, 1, 0.36, 1] }}
-              aria-hidden
-            />
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {infographic.process.map((step, i) => (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewport}
-                transition={{ delay: reduced ? 0 : 0.12 + i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={reduced ? undefined : { y: -6, transition: { duration: 0.25 } }}
-                className="group relative overflow-hidden rounded-sm border border-brand-cream/10 bg-brand-black/55 p-6 transition-colors hover:border-brand-burgundy/35 hover:bg-brand-black/70"
-              >
-                <motion.span
-                  initial={{ opacity: reduced ? 1 : 0, x: reduced ? 0 : -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={viewport}
-                  transition={{ delay: reduced ? 0 : 0.2 + i * 0.12, duration: 0.45 }}
-                  className="mb-4 block font-[family-name:var(--font-display)] text-4xl font-medium text-brand-burgundy/40 transition-colors group-hover:text-brand-gold/55"
-                >
-                  {step.step}
-                </motion.span>
-                <h3 className="mb-3 font-[family-name:var(--font-display)] text-xl font-medium text-brand-gold">
-                  {step.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-brand-cream/75 md:text-[0.95rem] md:leading-7">
-                  {step.body}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          variants={anim.fadeUp}
-          className="mb-14 rounded-sm border border-brand-cream/10 bg-brand-black/50 p-5 sm:p-6 md:mb-16 md:p-10"
-        >
-          <div className="mb-8">
-            <p className={`mb-2 ${typeInfographicTitle}`}>The Mash Bill</p>
-            <p className="text-pretty text-sm leading-relaxed text-brand-cream/72 md:text-base lg:whitespace-nowrap">
-              {infographic.mashBillNote}
-            </p>
-          </div>
-
-          <MashBillStack items={infographic.mashBill} delay={0.1} />
-
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
-            {infographic.mashBill.map((item, i) => (
-              <motion.div
-                key={item.grain}
-                initial={{ opacity: reduced ? 1 : 0, x: reduced ? 0 : -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={viewport}
-                transition={{ delay: reduced ? 0 : 0.5 + i * 0.12, duration: 0.45 }}
-                className="flex flex-col items-center gap-1 text-center"
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <motion.span
-                    className="h-2.5 w-2.5 shrink-0 rounded-full"
-                    style={{ backgroundColor: item.color }}
-                    initial={{ scale: reduced ? 1 : 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={viewport}
-                    transition={{ delay: reduced ? 0 : 0.55 + i * 0.12, type: "spring", stiffness: 400, damping: 15 }}
-                  />
-                  <span className="font-[family-name:var(--font-body)] text-sm text-brand-cream/85">{item.grain}</span>
-                </div>
-                <span className="font-[family-name:var(--font-display)] text-xl font-medium text-brand-gold">
-                  {item.percent}%
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div variants={anim.fadeUp}>
-          <div className="mb-10 text-center md:mb-12">
-            <p className={`mb-3 ${typeEyebrow}`}>{infographic.flavorSubheading}</p>
-            <p className={typeInfographicTitle}>{infographic.flavorHeading}</p>
-            <p className="mx-auto mt-5 text-pretty text-sm leading-relaxed text-brand-cream/72 md:text-base md:leading-7 lg:whitespace-nowrap">
-              {infographic.flavorIntro}
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {infographic.tastingNotes.map((note, i) => (
-              <motion.div
-                key={note.key}
-                initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewport}
-                transition={{ delay: reduced ? 0 : i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={reduced ? undefined : { y: -4 }}
-                className="overflow-hidden rounded-sm border border-brand-cream/10 bg-brand-black/55 transition-colors hover:border-brand-burgundy/25"
-              >
-                <div
-                  className="h-1.5 w-full shrink-0"
-                  style={{
-                    background: `linear-gradient(to right, ${note.accentFrom}, ${note.accentTo})`,
-                  }}
-                  aria-hidden
-                />
-                <div className="p-6 md:p-7">
-                  <p className={`mb-3 ${typeEyebrowLight}`}>{note.label}</p>
-                  <p className="text-sm leading-relaxed text-brand-cream/82 md:text-base md:leading-7">
-                    {product.tastingNotes[note.key as keyof typeof product.tastingNotes]}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </motion.div>
