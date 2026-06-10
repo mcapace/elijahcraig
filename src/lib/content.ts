@@ -36,9 +36,9 @@ export const siteConfig = {
     intro:
       "Elijah Craig Barrel Proof Batch A925 is the inaugural release of Elijah Craig's Barrel Proof Rye — the first barrel proof Kentucky straight rye in the portfolio, bottled uncut and non-chill filtered to preserve every note of flavor and natural cask character.",
     batchNote:
-      "The name uses Elijah Craig's signature batching code: \"A\" indicates the first of three yearly releases, \"9\" denotes the release month (September), and \"25\" specifies the year (2025).",
+      "The name uses Elijah Craig's signature batching code: \"A\" indicates the first release of the year, \"9\" denotes the release month (September), and \"25\" specifies the year (2025).",
     batchDecode: {
-      letter: { symbol: "A", title: "Release", meaning: "First of three yearly releases" },
+      letter: { symbol: "A", title: "Release", meaning: "First release of the year" },
       month: { symbol: "9", title: "Month", meaning: "September" },
       year: { symbol: "25", title: "Year", meaning: "2025" },
     },
@@ -154,11 +154,6 @@ export const siteConfig = {
       quote: "Best Single Barrel Bourbon",
       source: "San Francisco World Spirits Competition",
       detail: "Elijah Craig Single Barrel · Aged 11+ years",
-    },
-    {
-      quote: "Best Straight Bourbon",
-      source: "San Francisco World Spirits Competition",
-      detail: "Elijah Craig Bourbon",
     },
   ],
   press: {
