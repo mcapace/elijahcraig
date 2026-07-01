@@ -9,6 +9,7 @@ import ProductFeature from "@/components/ProductFeature";
 import Timeline from "@/components/Timeline";
 import Accolades from "@/components/Accolades";
 import VideoSection from "@/components/VideoSection";
+import ArticleSection from "@/components/ArticleSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <VideoSection />
+        <ArticleSection />
         <BrandStory />
         <ProductFeature />
         <InfographicSection block="process" />

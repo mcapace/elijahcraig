@@ -183,6 +183,78 @@ export const siteConfig = {
     embedUrl: "",
     iframeTitle: "Elijah Craig Barrel Proof Rye — Whisky Advocate Whiskey of the Year",
   },
+  article: {
+    eyebrow: "Whisky Advocate",
+    title: "Just Rewards",
+    deck:
+      "After years of success, the makers at Elijah Craig unveiled a new innovation that earned them the 2025 Whisky of the Year prize.",
+    blocks: [
+      {
+        type: "paragraph",
+        text:
+          "Elijah Craig is widely known as a bartender's go-to for excellent flavor at a terrific price point. A hidden gem to the everyday imbiber, perhaps, have been the brand's outstanding Barrel Proof offerings, a staple in finer dram shops. But late last year, under the leadership of Master Distiller Conor O'Driscoll, all the operation's best aspects came together for an entirely new bottling — Elijah Craig Barrel Proof Rye, an intriguing and utterly delicious high-proof offering that quickly took the market by storm. In December of 2025, Whisky Advocate gave it the coveted Whisky of the Year Award.",
+      },
+      {
+        type: "pullquote",
+        question: "How did this come about?",
+        quote:
+          "All our whiskeys reflect our skill and passion for making great whiskey. But in this case, the short version is, we let the whiskey tell us.",
+        attribution: "Conor O'Driscoll, Master Distiller, Elijah Craig",
+      },
+      { type: "divider" },
+      {
+        type: "paragraph",
+        text:
+          "That's mostly true — though perhaps a bit modest. The makers began with their classic rye mash bill — 51% rye, 35% corn, and 14% malted barley. But they tasted numerous barrels (Heaven Hill has more than 2 million, resting in various sites) and reached the critical decision to wait. The inaugural release that claimed the Whisky of the Year recognition, A925, was aged 12 years and 3 months. The unusually long maturation times yielded exceptional depth and balance.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "The 108-proof whiskey opens with aromas of baking spices, gingerbread, and molasses before revealing flavors of stewed fruit, cinnamon, and nutmeg, followed by a long finish filled with rye spice and warmth. Could that be butterscotch? Rather than relying solely on intensity, Elijah Craig Barrel Proof Rye balances richness, spice, and sweetness. Whisky Advocate tasters noted that the whiskey delivered a complete experience, combining the distinctive character of rye with the complexity that comes from more than a decade of aging. It's a rye whiskey in its purest form.",
+      },
+      { type: "divider" },
+      {
+        type: "paragraph",
+        text:
+          "Taking Whisky of the Year is a significant achievement, to be sure, but it's fair to say also that this particular winner represents something larger. This bottling was the first rye ever to earn the annual honor.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "While the brand had long been known for its highly regarded Barrel Proof Bourbon releases, the launch of a barrel-proof rye expanded the brand's portfolio in a bold and highly anticipated direction. The whiskey quickly captured the attention of enthusiasts who had been waiting for Heaven Hill Distillery to apply its barrel-proof philosophy to its rye whiskey program.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "The award also reflects the growing appreciation for rye whiskey among consumers and critics. Bourbon has dominated conversations about American whiskey for years now. Rye has enjoyed a renaissance over the last decade, however, with drinkers increasingly seeking spirits that offer bolder spice notes and greater complexity. Elijah Craig Barrel Proof Rye arrived at the perfect moment, delivering a mature, high-quality rye that appealed to both seasoned enthusiasts and newcomers.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "Another reason for the whiskey's success was the reputation of Elijah Craig itself. They've been here before. The Reverend Elijah Craig, the brand's namesake known as \"The Father of Bourbon,\" is credited with being the first to use charred oak barrels for aging, creating the bold amber liquid and distinctly smooth flavor that we know as Bourbon today. It has previously earned major industry recognition, including Whisky Advocate's Whisky of the Year award for Elijah Craig Barrel Proof Bourbon in 2017. Heaven Hill's Larceny Barrel Proof also topped the publication's rankings in 2020.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "The track record created high expectations for the rye release — and indeed, initial response from consumers and reviewers fueled the whiskey's momentum. Enthusiasts praised the balance of qualities in the bottle — plenty of age, plus exceptional flavor, with fruit, spice, floral notes, and sweetness working together harmoniously.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "Proper pricing also contributed to the whiskey's appeal. Despite its age, barrel-proof status, and award-winning quality, Elijah Craig Barrel Proof Rye debuted with a suggested retail price of $74.99. In a premium whiskey market where many highly sought-after bottles command substantially higher prices, the release was viewed as offering strong value relative to its quality and maturity. This accessibility helped broaden its appeal among whiskey drinkers seeking top-tier experiences without ultra-premium pricing.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "For owners Heaven Hill, the award carried additional significance because it coincided with the company's 90th anniversary year. Executive Chairman Max L. Shapira described the recognition as a meaningful tribute to generations of craftspeople who helped build the company's reputation. The honor reinforced Heaven Hill's position as one of America's leading whiskey producers and demonstrated the company's continued ability to innovate while maintaining traditional production values.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "Ultimately, Elijah Craig Barrel Proof Rye won Whisky Advocate's 2025 Whisky of the Year because it was firing on all cylinders. Its 12-year-plus maturation, uncut barrel-proof presentation, layered flavor profile, and historic role as the first rye whiskey ever to earn the publication's top honor made it a standout release in a highly competitive year.",
+      },
+    ] satisfies ArticleBlock[],
+  },
   cta: {
     heading: "Experience Barrel Proof Rye",
     body: "Elijah Craig Barrel Proof Rye is available nationwide in 750 ml bottles. For more information, please visit elijahcraig.com.",
@@ -201,3 +273,7 @@ export const siteConfig = {
 
 export type SiteConfig = typeof siteConfig;
 export type Accolade = (typeof siteConfig.accolades)[number];
+export type ArticleBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "pullquote"; question: string; quote: string; attribution: string }
+  | { type: "divider" };
