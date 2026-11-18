@@ -6,29 +6,29 @@ import { siteConfig } from "@/lib/content";
 import { useScrollAnimationVariants } from "@/hooks/useScrollAnimationVariants";
 import { typeEyebrow, typeSectionTitle } from "@/lib/typography";
 
-function resolveJwEmbedSrc(): string | null {
+/*
+ * Plays the JW Player media as a plain HTML5 video from JW Player's CDN. The
+ * JW Player embed sent analytics pings to JW Player on page load, before any
+ * consent and even with GPC on; the CDN file and poster carry no tracking.
+ */
+function resolveJwMediaId(): string | null {
   const { video } = siteConfig;
 
-  if (video.embedUrl?.trim()) {
-    return video.embedUrl.trim();
+  if (video.mediaId?.trim()) {
+    return video.mediaId.trim();
   }
 
-  const playerId =
-    video.playerId?.trim() || process.env.NEXT_PUBLIC_JW_PLAYER_ID?.trim() || "";
-
-  if (video.mediaId && playerId) {
-    return `https://cdn.jwplayer.com/players/${video.mediaId}-${playerId}.html`;
-  }
-
-  return null;
+  // Older config: an embed URL like https://cdn.jwplayer.com/players/{mediaId}-{playerId}.html
+  const match = video.embedUrl?.trim().match(/\/players\/([A-Za-z0-9]{8})-/);
+  return match ? match[1] : null;
 }
 
 export default function VideoSection() {
   const { video } = siteConfig;
   const anim = useScrollAnimationVariants();
-  const embedSrc = resolveJwEmbedSrc();
+  const mediaId = resolveJwMediaId();
 
-  if (!video.enabled || !embedSrc) return null;
+  if (!video.enabled || !mediaId) return null;
 
   return (
     <Section id="video" fullBleed className="relative overflow-hidden py-10 md:py-20 lg:py-24">
@@ -63,13 +63,14 @@ export default function VideoSection() {
           className="overflow-hidden rounded-sm border border-brand-cream/[0.08] bg-brand-black/70 shadow-[0_32px_120px_rgba(0,0,0,0.55)] ring-1 ring-brand-burgundy/15"
         >
           <div className="relative aspect-video w-full">
-            <iframe
-              src={embedSrc}
+            <video
+              src={`https://cdn.jwplayer.com/videos/${mediaId}.mp4`}
+              poster={`https://cdn.jwplayer.com/v2/media/${mediaId}/poster.jpg?width=1280`}
               title={video.iframeTitle}
-              className="absolute inset-0 h-full w-full border-0"
-              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
+              className="absolute inset-0 h-full w-full bg-black object-contain"
+              controls
+              playsInline
+              preload="none"
             />
           </div>
         </motion.div>
